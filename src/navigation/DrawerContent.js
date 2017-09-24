@@ -44,7 +44,7 @@ class DrawerContent extends Component {
                     <View style={styles.ruler} />
                     <DrawerButton icon={ABOUT} text='About' nav={() => { this.handleNav('about'); }} />
                 </View>
-                <View style={styles.footer}><Text style={styles.footerText}>www.moraspirit.com</Text><Text>2017</Text></View>
+                <Text style={styles.footer}>© 2017 | www.moraspirit.com</Text>
             </ScrollView>
         );
     }
@@ -58,13 +58,11 @@ const DrawerButton = (props) => (
 
 const styles = StyleSheet.create({
     container: {
-
         margin: 0,
         padding: 0
     },
     header: {
         height: 200,
-
         justifyContent: 'flex-end'
     },
     headerBackground: {
@@ -85,7 +83,6 @@ const styles = StyleSheet.create({
         paddingLeft: 15
     },
     button: {
-
         flexDirection: 'row',
         alignItems: 'center',
         marginLeft: 10,
@@ -109,15 +106,7 @@ const styles = StyleSheet.create({
         color: '#93918c'
     },
     footer: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent:'space-between',
-        marginRight:20
-    },
-    footerText: {
-
-        marginLeft: 30,
-
+        marginLeft: 25,
     }
 
 });

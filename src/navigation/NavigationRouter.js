@@ -15,10 +15,10 @@ const NavigationRouter = () => (
         <Lightbox hideNavBar >
             <Scene key="root" hideNavBar>
                 <Drawer key="drawer" contentComponent={DrawerContent} >
-                    <Scene initial key="articles" component={Articles} />
+                    <Scene key="articles" component={Articles} />
                     <Scene key="article" component={Article} />
                     <Scene key="gallery" component={Gallery} />
-                    <Scene key="rankings" component={Rankings} />
+                    <Scene initial key="rankings" component={Rankings} />
                     <Scene key="about" component={About} />
                 </Drawer>
             </Scene>
