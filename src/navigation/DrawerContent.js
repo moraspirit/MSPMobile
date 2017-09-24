@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const { height } = Dimensions.get('window');
 
 const ARTICLES = (<Icon name="ios-paper" size={35} />);
-const GALLERY = (<Icon name="md-images" size={35} />);
+const GALLERY = (<Icon name="md-images" size={30} />);
 const RANKINGS = (<Icon name="md-ribbon" size={35} />);
 const ABOUT = (<Icon name="md-finger-print" size={35} />);
 
@@ -28,7 +28,7 @@ class DrawerContent extends Component {
 
                 <View style={styles.headerBackground}>
                     <Image source={HEADER_BACKGROUND} style={styles.header}>
-                        <Image source={LOGO} resizeMode='center' style={styles.Logo} />
+                        <Image source={LOGO} resizeMode='contain' style={styles.Logo} />
                         <Image source={TEXT_LOGO} resizeMode='contain' style={styles.textLogo} />
 
 
@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#1f78b7'
     },
     Logo: {
-        marginLeft: 100,
-        width: 110,
+        marginLeft: 120,
+        width: 80,
         height: 70
     },
     textLogo: {
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     },
     title: {
         marginTop: 10,
-        marginLeft: 10,
+        marginLeft: 8,
         fontSize: 15,
         fontWeight: 'bold',
         color: '#93918c'
