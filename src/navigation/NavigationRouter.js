@@ -18,7 +18,7 @@ const NavigationRouter = () => (
                     <Scene key="articles" component={Articles} />
                     <Scene key="article" component={Article} />
                     <Scene key="gallery" component={Gallery} />
-                    <Scene initial key="rankings" component={Rankings} />
+                    <Scene initial key="rankings" component={Rankings} title='Rankings' />
                     <Scene key="about" component={About} />
                 </Drawer>
             </Scene>

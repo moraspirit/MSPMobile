@@ -5,13 +5,17 @@ import {
   Text,
   View
 } from 'react-native';
-
+import { Provider } from 'react-redux';
+import { InitializeApp } from './utils/InitializeApp';
 import NavigationRouter from './navigation/NavigationRouter';
 
 class App extends Component {
   render() {
+    const store = InitializeApp();
     return (
-      <NavigationRouter /> 
+      <Provider store={store}>
+        <NavigationRouter />
+      </Provider>
     );
   }
 }

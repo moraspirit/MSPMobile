@@ -1,12 +1,28 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { connect } from 'react-redux';
+import { fetchRankings } from '../actions';
+import RankingCard from '../components/RankingCard';
 
 class Rankings extends Component {
+    componentWillMount() {
+        this.props.fetchRankings();
+    }
+
+    renderCard = ({ item }) => {
+        return (<RankingCard uni={item} />);
+    }
 
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Rankings</Text>
+                <FlatList
+                    style={styles.list}
+                    data={this.props.ranks}
+                    renderItem={this.renderCard}
+                    keyExtractor={item => item.name}
+                    showsVerticalScrollIndicator={false}
+                />
             </View>
         );
     }
@@ -15,15 +31,17 @@ class Rankings extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#efefef'
     },
-    title: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
+    list: {
+        marginHorizontal: 10
     }
 });
 
-export default Rankings;
+const mapStateToProps = (state) => {
+    return {
+        ranks: state.rankings.ranks
+    };
+};
+
+export default connect(mapStateToProps, { fetchRankings })(Rankings);
