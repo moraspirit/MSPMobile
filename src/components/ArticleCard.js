@@ -1,35 +1,43 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, Share } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity,TouchableHighlight, Share } from 'react-native';
 import FastImage from 'react-native-fast-image'
+import { Actions } from 'react-native-router-flux';
 
 const LIKE = require('../images/like.png');
 const SHARE = require('../images/share.png');
 
 const { height, width } = Dimensions.get('window');
 
-const AlbumCard = (props) => {
+const ArticleCard = (props) => {
 
-    share = (id, name) => {
-        Share.share({ message: name + ' https://www.facebook.com/MoraSpirit.Official.fanpage/photos/?tab=album&album_id=' + id + '\n#moraspirit', title: 'Mora Spirit' }, { dialogTitle: 'Share Album' });
+    share = (nid, name) => {
+        Share.share({ message: name + ' http://www.moraspirit.com/node/' + nid + '\n#moraspirit', title: 'Mora Spirit' }, { dialogTitle: 'Share Article' });
     }
 
     return (
         <View style={styles.container}>
-            <Text style={styles.name}>{props.album.name}</Text>
+            <Text style={styles.name}>{props.article.title}</Text>
             <FastImage
                 style={styles.cover}
                 source={{
-                    uri: 'http://graph.facebook.com/' + props.album.cover_photo.id + '/picture?type=normal',
+                    uri: 'http://moraspirit.com/sites/default/files/styles/teaser_image/public/' + props.article.uri.substring(9),
                     priority: FastImage.priority.high,
                 }}
                 resizeMode={FastImage.resizeMode.cover}
             />
+            <TouchableHighlight
+                style={styles.summary}
+                onPress={() => { Actions.article({ nid: props.article.nid }) }}
+            >
+                <Text style={styles.summaryText}>{props.article.body_summary}... <Text style={styles.continue}>Continue Reading</Text></Text>
+            </TouchableHighlight>
+            <View style={styles.ruler} />
             <View style={styles.socialBar}>
                 <TouchableOpacity style={styles.buttonContainer}>
                     <Image source={LIKE} style={styles.button} />
                     <Text style={styles.buttonText}>Like</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { this.share(props.album.id, props.album.name) }} style={styles.buttonContainer}>
+                <TouchableOpacity onPress={() => { this.share(props.article.nid, props.article.title) }} style={styles.buttonContainer}>
                     <Image source={SHARE} style={styles.button} />
                     <Text style={styles.buttonText}>Share</Text>
                 </TouchableOpacity>
@@ -51,13 +59,28 @@ const styles = StyleSheet.create({
     },
     cover: {
         height: 300,
-        width: width,
-
+        width: width
     },
     name: {
-        fontSize: 16,
+        fontSize: 23,
         fontWeight: 'bold',
+        color: '#4f4a4a',
         margin: 10
+    },
+    summary: {
+        margin: 10
+    },
+    summaryText: {
+        fontSize: 16,
+        color: 'black'
+    },
+    continue: {
+        color: '#a8a8a8'
+    },
+    ruler: {
+        borderBottomColor: '#dbd9d2',
+        borderBottomWidth: .7,
+        width: width - 30
     },
     socialBar: {
         flex: 1,
@@ -81,4 +104,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AlbumCard;
+export default ArticleCard;

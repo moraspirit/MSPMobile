@@ -46,11 +46,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#efefef',
     },
-    title: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
     list: {
         marginHorizontal: 0
     }

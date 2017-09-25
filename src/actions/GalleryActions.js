@@ -7,14 +7,6 @@ import {
 
 const INITIAL_URL = 'https://graph.facebook.com/MoraSpirit.Official.fanpage/albums?fields=name,cover_photo{id},likes.limit(0).summary(true),comments.limit(0).summary(true)&limit=3';
 
-responseInfoCallback = (error, result) => {
-    if (error) {
-        console.log('Error fetching data: ', error);
-    } else {
-        console.log('Success fetching data: ', result);
-    }
-}
-
 export const fetchInitialAlbums = () => {
     return (dispatch) => {
         dispatch({ type: FETCHING_ALBUMS });
