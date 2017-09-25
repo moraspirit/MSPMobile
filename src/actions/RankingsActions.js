@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import {
     FETCHING_RANKS,
-    RANNINGS_FETCH_SUCCESS
+    RANKINGS_FETCH_SUCCESS
 } from './types';
 
 export const fetchRankings = () => {
@@ -16,7 +16,7 @@ export const fetchRankings = () => {
                         .reverse()
                         .value();
                     bindRank(orderedRankings);
-                    dispatch({ type: RANNINGS_FETCH_SUCCESS, payload: orderedRankings });
+                    dispatch({ type: RANKINGS_FETCH_SUCCESS, payload: orderedRankings });
                 }
             })
             .catch((error) => {
