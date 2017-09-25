@@ -3,6 +3,9 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchRankings } from '../actions';
 import RankingCard from '../components/RankingCard';
+import ListHeader from '../components/ListHeader';
+
+const HEADER = require('../images/rankingsCover.jpg');
 
 class Rankings extends Component {
     componentWillMount() {
@@ -18,6 +21,7 @@ class Rankings extends Component {
             <View style={styles.container}>
                 <FlatList
                     style={styles.list}
+                    ListHeaderComponent={ListHeader({ headerImage: HEADER, title:'Inter University Games 2017 Ranking', discription:'Overall ranking based on points earned so far...' })}
                     data={this.props.ranks}
                     renderItem={this.renderCard}
                     keyExtractor={item => item.name}
@@ -36,7 +40,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#efefef'
     },
     list: {
-        marginHorizontal: 10
+        marginHorizontal: 0
     }
 });
 

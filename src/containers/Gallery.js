@@ -3,6 +3,9 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchAlbums, fetchInitialAlbums } from '../actions';
 import AlbumCard from '../components/AlbumCard';
+import ListHeader from '../components/ListHeader';
+
+const HEADER = require('../images/galleryCover.jpg');
 
 class Gallery extends Component {
 
@@ -19,11 +22,15 @@ class Gallery extends Component {
         return (<AlbumCard album={item} />);
     }
 
+    // TODO: ListEmptyComponent
+
     render() {
         return (
             <View style={styles.container}>
                 <FlatList
+
                     style={styles.list}
+                    ListHeaderComponent={ListHeader({ headerImage: HEADER, title:'Welcome to Album Feed', discription:'The latest sports Albums by Moraspirit' })}
                     data={this.props.albums}
                     renderItem={this.renderCard}
                     keyExtractor={item => item.id + item.name}
@@ -32,7 +39,6 @@ class Gallery extends Component {
                     onRefresh={() => { this.props.fetchInitialAlbums() }}
                     onEndReachedThreshold={10}
                     onEndReached={() => { this.props.fetchAlbums(this.props.nextURL) }}
-
                 />
             </View>
         );
