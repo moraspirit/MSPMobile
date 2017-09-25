@@ -22,6 +22,8 @@ class Rankings extends Component {
                     renderItem={this.renderCard}
                     keyExtractor={item => item.name}
                     showsVerticalScrollIndicator={false}
+                    refreshing={this.props.refreshing}
+                    onRefresh={() => { this.props.fetchRankings() }}
                 />
             </View>
         );
@@ -40,7 +42,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        ranks: state.rankings.ranks
+        ranks: state.rankings.ranks,
+        refreshing: state.rankings.refreshing
     };
 };
 

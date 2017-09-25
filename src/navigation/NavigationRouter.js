@@ -19,8 +19,8 @@ const NavigationRouter = () => (
                 <Drawer key="drawer" contentComponent={DrawerContent} drawerIcon={ABOUT} navigationBarStyle={styles.navbar} titleStyle={styles.title}>
                     <Scene key="articles" component={Articles} />
                     <Scene key="article" component={Article} />
-                    <Scene key="gallery" component={Gallery} />
-                    <Scene initial key="rankings" component={Rankings} title='Rankings' />
+                    <Scene initial key="gallery" component={Gallery} title='Gallery' />
+                    <Scene key="rankings" component={Rankings} title='Rankings' />
                     <Scene key="about" component={About} />
                 </Drawer>
             </Scene>

@@ -1,0 +1,23 @@
+{
+  "name": "moraspirit",
+  "version": "1.0.0",
+  "description": "Mobile App server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Malith Thilakarathne",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "fb": "^2.0.0",
+    "https": "^1.0.0",
+    "mongodb": "^2.2.31",
+    "mysql": "^2.14.1",
+    "node-gcm": "^0.14.6",
+    "winston": "^2.3.1"
+  }
+}

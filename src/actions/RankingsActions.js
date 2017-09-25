@@ -1,10 +1,12 @@
 import _ from 'lodash';
 import {
+    FETCHING_RANKS,
     RANNINGS_FETCH_SUCCESS
 } from './types';
 
 export const fetchRankings = () => {
     return (dispatch) => {
+        dispatch({ type: FETCHING_RANKS });
         fetch('http://www.sports.moraspirit.com/getscores')
             .then((response) => response.json())
             .then((responseJson) => {
