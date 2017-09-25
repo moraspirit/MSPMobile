@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Actions, Scene, Router, Lightbox, Drawer, Tabs, Stack, Text, View } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { FlatList } from 'react-native';
 
 import TabIcon from './TabIcon';
 
@@ -17,45 +18,48 @@ const MENU = (<Icon name="ios-menu" size={35} color='grey' />);
 const NavigationRouter = () => (
     <Router sceneStyle={styles.main} backAndroidHandler={onBackAndroid}>
         <Lightbox hideNavBar >
-            <Scene key="root" hideNavBar>
+            <Scene key="wrapper" hideNavBar >
                 <Drawer key="drawer" contentComponent={DrawerContent} drawerIcon={MENU} navigationBarStyle={styles.navbar} titleStyle={styles.title} >
+                    <Scene key="root" >
+                        <Tabs
+                            key="tabbar"
+                            swipeEnabled
+                            showLabel={false}
+                            tabBarStyle={styles.tabBarStyle}
+                            activeTintColor='blue'
 
-                    <Tabs
-                        key="tabbar"
-                        swipeEnabled
-                        showLabel={false}
-                        tabBarStyle={styles.tabBarStyle}
-                        activeTintColor='blue'>
-                        <Scene
-                            initial
-                            key="articles"
-                            component={Articles}
-                            title='Articles'
-                            hideNavBar
-                            icon={TabIcon}
-                        />
-                        <Scene
-                            back
-                            key="gallery"
-                            component={Gallery}
-                            title='Gallery'
-                            navBarButtonColor='white'
-                            hideNavBar
-                            icon={TabIcon}
-                        />
-                        <Scene
-                            back
-                            key="rankings"
-                            component={Rankings}
-                            title='Rankings'
-                            navBarButtonColor='white'
-                            hideNavBar
-                            icon={TabIcon}
-                        />
-                    </Tabs>
-                    <Scene back key="article" component={Article} navBarButtonColor='white' />
-                    <Scene back key="about" component={About} navBarButtonColor='white' />
-
+                            animationEnabled
+                            lazy>
+                            <Scene
+                                initial
+                                key="articles"
+                                component={Articles}
+                                title='Articles'
+                                hideNavBar
+                                icon={TabIcon}
+                            />
+                            <Scene
+                                back
+                                key="gallery"
+                                component={Gallery}
+                                title='Gallery'
+                                navBarButtonColor='white'
+                                hideNavBar
+                                icon={TabIcon}
+                            />
+                            <Scene
+                                back
+                                key="rankings"
+                                component={Rankings}
+                                title='Rankings'
+                                navBarButtonColor='white'
+                                hideNavBar
+                                icon={TabIcon}
+                            />
+                        </Tabs>
+                        <Scene back key="article" component={Article} navBarButtonColor='black' title='Mora Spirit' />
+                        <Scene back key="about" component={About} navBarButtonColor='black' title='Mora Spirit' />
+                    </Scene>
                 </Drawer>
             </Scene>
             <Scene key="modal" component={Modal} />
