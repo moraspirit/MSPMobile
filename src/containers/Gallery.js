@@ -1,31 +1,38 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchAlbums } from '../actions';
+import { fetchAlbums, fetchInitialAlbums } from '../actions';
+import AlbumCard from '../components/AlbumCard';
 
-const INITIAL_URL = 'https://graph.facebook.com/MoraSpirit.Official.fanpage/albums?fields=name,cover_photo{id},likes.limit(0).summary(true),comments.limit(0).summary(true)&limit=10';
 class Gallery extends Component {
 
-    componentWillMount() {
-        this.props.fetchAlbums(INITIAL_URL);
+    constructor(props) {
+        super(props);
+        this.props.fetchInitialAlbums();
+
     }
 
     renderCard = ({ item }) => {
-        return (<Text>{item.name}</Text>);
+        if (item && item.id === '213000905390257' || item.id === '383867768303569' || item.id === '153519138005101' || item.cover_photo == null) {
+            return null;
+        }
+        return (<AlbumCard album={item} />);
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Gallery</Text>
                 <FlatList
                     style={styles.list}
                     data={this.props.albums}
                     renderItem={this.renderCard}
-                    keyExtractor={item => item.id}
-                    showsVerticalScrollIndicator={false}
+                    keyExtractor={item => item.id + item.name}
+                    showsVerticalScrollIndicator={true}
                     refreshing={this.props.refreshing}
-                    onRefresh={() => { this.props.fetchAlbums(INITIAL_URL) }}
+                    onRefresh={() => { this.props.fetchInitialAlbums() }}
+                    onEndReachedThreshold={10}
+                    onEndReached={() => { this.props.fetchAlbums(this.props.nextURL) }}
+
                 />
             </View>
         );
@@ -37,7 +44,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#efefef',
     },
     title: {
         fontSize: 20,
@@ -45,7 +52,7 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     list: {
-        marginHorizontal: 10
+        marginHorizontal: 0
     }
 });
 
@@ -57,4 +64,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { fetchAlbums })(Gallery);
+export default connect(mapStateToProps, { fetchAlbums, fetchInitialAlbums })(Gallery);

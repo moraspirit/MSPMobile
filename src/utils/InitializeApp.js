@@ -42,16 +42,16 @@ export const InitializeApp = () => {
 
     const store = createStore(reducers, {}, compose(...enhancers));
 
-    persistStore(store, {
-        storage: AsyncStorage,
-        keyPrefix: REDUX_OFFLINE_STORE,
-        debounce: 1000, // default is 1000 ms
-        blacklist: [] // these reducers contain temory ap states for UI, so don't to persist them.
-    },
-        () => {
-            console.log('Rehydration completed!');
-        }
-    );
+    // persistStore(store, {
+    //     storage: AsyncStorage,
+    //     keyPrefix: REDUX_OFFLINE_STORE,
+    //     debounce: 1000, // default is 1000 ms
+    //     blacklist: [] // these reducers contain temory ap states for UI, so don't to persist them.
+    // },
+    //     () => {
+    //         console.log('Rehydration completed!');
+    //     }
+    // );
 
     return store;
 };
