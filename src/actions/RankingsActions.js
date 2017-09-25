@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import {
     FETCHING_RANKS,
-    RANKINGS_FETCH_SUCCESS
+    RANKINGS_FETCH_SUCCESS,
+    FETCHING_ERROR
 } from './types';
 
 export const fetchRankings = () => {
@@ -21,6 +22,7 @@ export const fetchRankings = () => {
             })
             .catch((error) => {
                 console.error(error);
+                dispatch({ type: FETCHING_ERROR });
             });
     };
 };

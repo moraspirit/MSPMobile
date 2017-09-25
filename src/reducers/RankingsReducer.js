@@ -1,6 +1,7 @@
 import {
     FETCHING_RANKS,
-    RANKINGS_FETCH_SUCCESS
+    RANKINGS_FETCH_SUCCESS,
+    FETCHING_ERROR
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -14,6 +15,8 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, refreshing: true }
         case RANKINGS_FETCH_SUCCESS:
             return { ...state, ranks: action.payload, refreshing: false };
+        case FETCHING_ERROR:
+            return { ...state, refreshing: false }
         default:
             return state;
     }

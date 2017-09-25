@@ -1,7 +1,8 @@
 import {
     FETCHING_ALBUMS,
     INITIAL_ALBUMS_FETCH_SUCCESS,
-    ALBUMS_FETCH_SUCCESS
+    ALBUMS_FETCH_SUCCESS,
+    FETCHING_ERROR
 } from './types';
 
 const INITIAL_URL = 'https://graph.facebook.com/MoraSpirit.Official.fanpage/albums?fields=name,cover_photo{id},likes.limit(0).summary(true),comments.limit(0).summary(true)&limit=3';
@@ -36,6 +37,7 @@ export const fetchInitialAlbums = () => {
             })
             .catch((error) => {
                 console.error(error);
+                dispatch({ type: FETCHING_ERROR });
             });
 
     };
@@ -63,6 +65,7 @@ export const fetchAlbums = (nextURL) => {
             })
             .catch((error) => {
                 console.error(error);
+                dispatch({ type: FETCHING_ERROR });
             });
 
     };
