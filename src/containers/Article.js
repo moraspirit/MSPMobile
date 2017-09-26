@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, ScrollView, Text, Image, StyleSheet, Dimensions, TouchableOpacity, TouchableHighlight, Share } from 'react-native';
 import { connect } from 'react-redux';
-import FastImage from 'react-native-fast-image'
+import HTMLView from 'react-native-htmlview';
 import { fetchArticle } from '../actions';
 
 const LIKE = require('../images/like.png');
@@ -18,7 +18,7 @@ class Article extends Component {
     share = (nid, name) => {
         Share.share({ message: name + ' http://www.moraspirit.com/node/' + nid + '\n#moraspirit', title: 'Mora Spirit' }, { dialogTitle: 'Share Article' });
     }
-    
+
     render() {
         console.log(this.props.cover)
         return (
@@ -27,7 +27,7 @@ class Article extends Component {
                     <Text style={styles.name}>{this.props.title}</Text>
                     {this.props.cover}
                     <View style={styles.summary}>
-                        <Text style={styles.summaryText}>{this.props.bodyValue}</Text>
+                        <HTMLView value={'<ft>' + this.props.bodyValue + '</ft>'} stylesheet={htmlTagStyles} />
                     </View>
                     <View style={styles.ruler} />
                     <View style={styles.socialBar}>
@@ -46,6 +46,21 @@ class Article extends Component {
         );
     }
 }
+
+const htmlTagStyles = StyleSheet.create({
+    a: {
+        fontWeight: '300',
+        color: 'blue', // make links coloured blue
+    },
+    ft: {
+        fontSize: 17
+    },
+    sup: {
+        textAlignVertical: 'top',
+        textAlign: 'center',
+        fontSize: 10
+    }
+});
 
 const styles = StyleSheet.create({
     container: {

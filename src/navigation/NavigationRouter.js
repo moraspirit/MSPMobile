@@ -57,7 +57,7 @@ const NavigationRouter = () => (
                                 icon={TabIcon}
                             />
                         </Tabs>
-                        <Scene back key="article" component={Article} navBarButtonColor='black' title='Mora Spirit' />
+                        <Scene back key="article" component={Article} navBarButtonColor='black'/>
                         <Scene back key="about" component={About} navBarButtonColor='black' title='Mora Spirit' />
                     </Scene>
                 </Drawer>

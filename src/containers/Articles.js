@@ -24,7 +24,7 @@ class Articles extends Component {
             <View style={styles.container}>
                 <FlatList
                     style={styles.list}
-                    ListHeaderComponent={ListHeader({ headerImage: HEADER, title:'Welcome to Article Feed', discription:'The latest sports News by Moraspirit' })}
+                    ListHeaderComponent={ListHeader({ headerImage: HEADER, title:'Welcome to Article Feed', discription:'The latest sports news by Moraspirit' })}
                     data={this.props.articles}
                     renderItem={this.renderCard}
                     keyExtractor={item => item.nid}

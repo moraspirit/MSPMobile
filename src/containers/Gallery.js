@@ -30,7 +30,7 @@ class Gallery extends Component {
                 <FlatList
 
                     style={styles.list}
-                    ListHeaderComponent={ListHeader({ headerImage: HEADER, title:'Welcome to Album Feed', discription:'The latest sports Albums by Moraspirit' })}
+                    ListHeaderComponent={ListHeader({ headerImage: HEADER, title:'Welcome to Album Feed', discription:'The latest sports albums by Moraspirit' })}
                     data={this.props.albums}
                     renderItem={this.renderCard}
                     keyExtractor={item => item.id + item.name}
