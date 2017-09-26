@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     },
     summaryText: {
         fontSize: 16,
+        lineHeight: 20,
         color: 'black'
     },
     continue: {

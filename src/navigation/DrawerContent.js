@@ -24,7 +24,7 @@ class DrawerContent extends Component {
     render() {
         return (
             <ScrollView style={styles.container}>
-                {/* <StatusBar backgroundColor="#191818" barStyle="light-content" /> */}
+                <StatusBar backgroundColor="#0a76a8" barStyle="light-content" />
                 <View style={styles.headerBackground}>
                     <Image source={HEADER_BACKGROUND} style={styles.header}>
                         <Image source={LOGO} resizeMode='contain' style={styles.Logo} />

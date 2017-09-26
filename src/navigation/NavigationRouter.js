@@ -26,7 +26,7 @@ const NavigationRouter = () => (
                             swipeEnabled
                             showLabel={false}
                             tabBarStyle={styles.tabBarStyle}
-                            activeTintColor='blue'
+                            activeTintColor='#0a76a8'
 
                             animationEnabled
                             lazy>

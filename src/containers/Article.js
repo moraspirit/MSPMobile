@@ -58,7 +58,7 @@ const htmlTagStyles = StyleSheet.create({
     sup: {
         textAlignVertical: 'top',
         textAlign: 'center',
-        fontSize: 10
+        fontSize: 15
     }
 });
 
