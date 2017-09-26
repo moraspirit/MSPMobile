@@ -9,3 +9,6 @@ export const FETCHING_ERROR = 'fetching_error';
 export const FETCHING_ARTICLES = 'fetching_articles';
 export const INITIAL_ARTICLES_FETCH_SUCCESS = 'initial_articles_fetch_success';
 export const ARTICLES_FETCH_SUCCESS = 'articles_fetch_success';
+
+export const FETCHING_ARTICLE = 'fetching_article';
+export const ARTICLE_FETCH_SUCCESS = 'article_fetch_success';
