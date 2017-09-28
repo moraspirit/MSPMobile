@@ -37,7 +37,7 @@ export const fetchInitialAlbums = () => {
 
 export const fetchAlbums = (nextURL) => {
     return (dispatch) => {
-        dispatch({ type: FETCHING_ALBUMS });
+        dispatch({ type: FETCHING_ALBUMS, payload: nextURL });
         fetch(nextURL + '&limit=30', {
             method: 'get',
             headers: {
@@ -49,10 +49,10 @@ export const fetchAlbums = (nextURL) => {
             .then((responseJson) => {
                 console.log(responseJson);
                 const albums = responseJson.data;
-                const nextURL = responseJson.paging.next;
+                const NewNextURL = responseJson.paging.next;
                 console.log(albums);
 
-                dispatch({ type: ALBUMS_FETCH_SUCCESS, payload: { albums, nextURL } });
+                dispatch({ type: ALBUMS_FETCH_SUCCESS, payload: { albums, nextURL: NewNextURL } });
 
             })
             .catch((error) => {

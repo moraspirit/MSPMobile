@@ -30,15 +30,22 @@ class Gallery extends Component {
                 <FlatList
 
                     style={styles.list}
-                    ListHeaderComponent={ListHeader({ headerImage: HEADER, title:'Welcome to Album Feed', discription:'The latest sports albums by Moraspirit' })}
+                    ListHeaderComponent={ListHeader({ headerImage: HEADER, title: 'Welcome to Album Feed', discription: 'The latest sports albums by Moraspirit' })}
                     data={this.props.albums}
                     renderItem={this.renderCard}
                     keyExtractor={item => item.id + item.name}
                     showsVerticalScrollIndicator={true}
                     refreshing={this.props.refreshing}
                     onRefresh={() => { this.props.fetchInitialAlbums() }}
-                    onEndReachedThreshold={10}
-                    onEndReached={() => { this.props.fetchAlbums(this.props.nextURL) }}
+                    onMomentumScrollBegin={() => { this.onEndReachedCalledDuringMomentum = false; }}
+                    onEndReachedThreshold={5}
+                    onEndReached={(info) => {
+                        if (!this.onEndReachedCalledDuringMomentum) {
+                            this.props.fetchAlbums(this.props.nextURL);
+                            this.onEndReachedCalledDuringMomentum = true;
+                        }
+                    }
+                    }
                 />
             </View>
         );
