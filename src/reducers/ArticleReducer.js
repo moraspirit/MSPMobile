@@ -17,7 +17,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case FETCHING_ARTICLE:
-            return { ...state, refreshing: true }
+            return { ...INITIAL_STATE, refreshing: true }
         case ARTICLE_FETCH_SUCCESS:
             return { ...state,  ...action.payload, refreshing: false };
         case FETCHING_ERROR:

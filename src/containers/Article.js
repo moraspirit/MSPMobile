@@ -10,8 +10,7 @@ const SHARE = require('../images/share.png');
 const { height, width } = Dimensions.get('window');
 
 class Article extends Component {
-    constructor(props) {
-        super(props);
+    componentWillMount() {
         this.props.fetchArticle(this.props.nid);
     }
 
