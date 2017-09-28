@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Actions, Scene, Router, Lightbox, Drawer, Tabs, Stack, Text, View } from 'react-native-router-flux';
+import { Actions, Scene, Router, Lightbox, Drawer, Tabs, Stack } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { FlatList } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 
 import TabIcon from './TabIcon';
-
 import Articles from '../containers/Articles';
 import Article from '../containers/Article';
 import Gallery from '../containers/Gallery';
@@ -14,13 +13,14 @@ import Modal from '../containers/Modal';
 import DrawerContent from './DrawerContent';
 
 const MENU = (<Icon name="ios-menu" size={35} color='grey' />);
+const BACK = require('../images/back.png');
 
 const NavigationRouter = () => (
     <Router sceneStyle={styles.main} backAndroidHandler={onBackAndroid}>
         <Lightbox hideNavBar >
             <Scene key="wrapper" hideNavBar >
-                <Drawer key="drawer" contentComponent={DrawerContent} drawerIcon={MENU} navigationBarStyle={styles.navbar} titleStyle={styles.title} >
-                    <Scene key="root" >
+                <Drawer key="drawer" contentComponent={DrawerContent} drawerIcon={MENU} navigationBarStyle={styles.navbar} titleStyle={styles.title} leftButtonIconStyle={styles.backButton} backButtonImage={BACK} >
+                    <Scene key="root"  >
                         <Tabs
                             key="tabbar"
                             swipeEnabled
@@ -37,6 +37,7 @@ const NavigationRouter = () => (
                                 title='Articles'
                                 hideNavBar
                                 icon={TabIcon}
+
                             />
                             <Scene
                                 back
@@ -57,7 +58,7 @@ const NavigationRouter = () => (
                                 icon={TabIcon}
                             />
                         </Tabs>
-                        <Scene back key="article" component={Article} navBarButtonColor='black'/>
+                        <Scene back key="article" component={Article} navBarButtonColor='black' />
                         <Scene back key="about" component={About} navBarButtonColor='black' title='Mora Spirit' />
                     </Scene>
                 </Drawer>
@@ -78,13 +79,22 @@ const onBackAndroid = () => {
 
 const styles = {
     main: {
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+
     },
     navbar: {
-        backgroundColor: '#fff'
+        backgroundColor: 'white'
     },
     title: {
-        color: 'grey'
+        color: 'grey',
+        fontWeight: 'normal',
+        fontSize: 16
+    },
+    backButton: {
+        width: 25,
+        padding: 0,
+        marginRight: 0,
+        marginLeft: 10
     },
     tabBarStyle: {
         backgroundColor: 'white',

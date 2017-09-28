@@ -20,7 +20,9 @@ const renderCover = (uri) => {
 
 const ArticleCard = (props) => {
     share = (nid, name) => {
-        Share.share({ message: name + ' http://www.moraspirit.com/node/' + nid + '\n#moraspirit', title: 'Mora Spirit' }, { dialogTitle: 'Share Article' });
+        Share.share({ message: name + ' http://www.moraspirit.com/node/' + nid + '\n#moraspirit', title: 'Mora Spirit' }, { dialogTitle: 'Share Article' })
+            .then((res) => { console.log(res) })
+            .catch(err => console.log(err));;
     }
 
     return (
@@ -29,7 +31,7 @@ const ArticleCard = (props) => {
             {renderCover(props.article.uri.substring(9))}
             <TouchableHighlight
                 style={styles.summary}
-                onPress={() => { Actions.article({ nid: props.article.nid, cover: renderCover(props.article.uri.substring(9)) }) }}
+                onPress={() => { Actions.article({ nid: props.article.nid, title: props.article.title, cover: renderCover(props.article.uri.substring(9)) }) }}
             >
                 <Text style={styles.summaryText}>{props.article.body_summary}... <Text style={styles.continue}>Continue Reading</Text></Text>
             </TouchableHighlight>

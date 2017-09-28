@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, ScrollView, Text, Image, StyleSheet, Dimensions, TouchableOpacity, TouchableHighlight, Share } from 'react-native';
 import { connect } from 'react-redux';
 import HTMLView from 'react-native-htmlview';
+
 import { fetchArticle } from '../actions';
 
 const LIKE = require('../images/like.png');
@@ -15,11 +16,12 @@ class Article extends Component {
     }
 
     share = (nid, name) => {
-        Share.share({ message: name + ' http://www.moraspirit.com/node/' + nid + '\n#moraspirit', title: 'Mora Spirit' }, { dialogTitle: 'Share Article' });
+        Share.share({ message: name + ' http://www.moraspirit.com/node/' + nid + '\n#moraspirit', title: 'Mora Spirit' }, { dialogTitle: 'Share Article' })
+            .then((res) => { console.log(res) })
+            .catch(err => console.log(err));
     }
 
     render() {
-        console.log(this.props.cover)
         return (
             <ScrollView style={styles.container}>
                 <View style={styles.wrapper}>
