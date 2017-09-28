@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, TouchableHighlight, Share } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, Share } from 'react-native';
 import FastImage from 'react-native-fast-image'
 import { Actions } from 'react-native-router-flux';
+import HTMLView from 'react-native-htmlview';
 
 const LIKE = require('../images/like.png');
 const SHARE = require('../images/share.png');
@@ -29,12 +30,12 @@ const ArticleCard = (props) => {
         <View style={styles.container}>
             <Text style={styles.name}>{props.article.title}</Text>
             {renderCover(props.article.uri.substring(9))}
-            <TouchableHighlight
+            <TouchableOpacity
                 style={styles.summary}
                 onPress={() => { Actions.article({ nid: props.article.nid, title: props.article.title, cover: renderCover(props.article.uri.substring(9)) }) }}
             >
-                <Text style={styles.summaryText}>{props.article.body_summary}... <Text style={styles.continue}>Continue Reading</Text></Text>
-            </TouchableHighlight>
+                <HTMLView value={'<ft>' + props.article.body_summary + '...<a>Continue Reading</a></ft>'} stylesheet={htmlTagStyles} />
+            </ TouchableOpacity>
             <View style={styles.ruler} />
             <View style={styles.socialBar}>
                 <TouchableOpacity style={styles.buttonContainer}>
@@ -49,6 +50,21 @@ const ArticleCard = (props) => {
         </View>
     );
 }
+
+const htmlTagStyles = StyleSheet.create({
+    a: {
+        fontWeight: '300',
+        color: '#072e91', // make links coloured blue
+    },
+    ft: {
+        fontSize: 17
+    },
+    sup: {
+        textAlignVertical: 'top',
+        textAlign: 'center',
+        fontSize: 15
+    }
+});
 
 const styles = StyleSheet.create({
     container: {

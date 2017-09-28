@@ -51,7 +51,7 @@ class Article extends Component {
 const htmlTagStyles = StyleSheet.create({
     a: {
         fontWeight: '300',
-        color: 'blue', // make links coloured blue
+        color: '#072e91', // make links coloured blue
     },
     ft: {
         fontSize: 17
