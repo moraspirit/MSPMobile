@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
 import FastImage from 'react-native-fast-image'
 
 const { width } = Dimensions.get('window');
-const spinner = require('../images/spinner.gif');
+const SPINNER = require('../images/spinner.gif');
 class SamrtImage extends Component {
 
     state = {
@@ -14,7 +14,7 @@ class SamrtImage extends Component {
         if (this.state.loading) {
             return (
                 <View style={styles.loading}>
-                    <Image source={spinner} style={styles.spinner} />
+                    <Image source={SPINNER} style={styles.spinner} />
                 </View>);
         }
     }
@@ -30,11 +30,9 @@ class SamrtImage extends Component {
                         priority: FastImage.priority.high,
                     }}
                     resizeMode={FastImage.resizeMode.cover}
-                    onLoadStart={() => { console.log('Loading Image-----') }}
-                    onLoad={() => { console.log('Loaded +++++++'); this.setState({ loading: false }) }}
+                    onLoad={() => {  this.setState({ loading: false }) }}
                 />
             </View>
-
         );
     }
 }
@@ -43,7 +41,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#efefef',
-
     },
     image: {
         height: 200,

@@ -7,12 +7,23 @@ import { fetchArticle } from '../actions';
 
 const LIKE = require('../images/like.png');
 const SHARE = require('../images/share.png');
+const SPINNER = require('../images/spinner.gif');
 
 const { height, width } = Dimensions.get('window');
 
 class Article extends Component {
+
     componentWillMount() {
         this.props.fetchArticle(this.props.nid);
+    }
+
+    renderLoadingView = () => {
+        if (this.props.loading) {
+            return (
+                <View style={styles.loading}>
+                    <Image source={SPINNER} style={styles.spinner} />
+                </View>);
+        }
     }
 
     share = (nid, name) => {
@@ -27,6 +38,7 @@ class Article extends Component {
                 <View style={styles.wrapper}>
                     <Text style={styles.name}>{this.props.articleTitle}</Text>
                     {this.props.cover}
+                    {this.renderLoadingView()}
                     <View style={styles.summary}>
                         <HTMLView value={'<ft>' + this.props.bodyValue + '</ft>'} stylesheet={htmlTagStyles} />
                     </View>
@@ -42,7 +54,6 @@ class Article extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-
             </ScrollView>
         );
     }
@@ -66,7 +77,6 @@ const htmlTagStyles = StyleSheet.create({
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-
         backgroundColor: '#efefef',
     },
     wrapper: {
@@ -123,11 +133,21 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         marginLeft: 8
+    },
+    loading: {
+        height: 400,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width
+    },
+    spinner: {
+        height: 30,
+        width: 30
     }
 });
 
 const mapStateToProps = (state) => {
-    const { title, name, created, modified, body_value, uri, refreshing } = state.article;
+    const { title, name, created, modified, body_value, uri, refreshing, loading } = state.article;
     return {
         title,
         name,
@@ -135,7 +155,8 @@ const mapStateToProps = (state) => {
         modified,
         bodyValue: body_value,
         uri,
-        refreshing
+        refreshing,
+        loading
     };
 };
 

@@ -5,13 +5,14 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = {
-    title:'',
-    name:'',
-    created:'',
-    modified:'',
-    body_value:'',
-    uri:'',
-    refreshing: false
+    title: '',
+    name: '',
+    created: '',
+    modified: '',
+    body_value: '',
+    uri: '',
+    refreshing: false,
+    loading: true
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -19,7 +20,7 @@ export default (state = INITIAL_STATE, action) => {
         case FETCHING_ARTICLE:
             return { ...INITIAL_STATE, refreshing: true }
         case ARTICLE_FETCH_SUCCESS:
-            return { ...state,  ...action.payload, refreshing: false };
+            return { ...state, ...action.payload, refreshing: false, loading: false };
         case FETCHING_ERROR:
             return { ...state, refreshing: false }
         default:
