@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, Share } from 'react-native';
 import FastImage from 'react-native-fast-image'
+import SmartImage from './SmartImage';
 
 const LIKE = require('../images/like.png');
 const SHARE = require('../images/share.png');
@@ -16,14 +17,7 @@ const AlbumCard = (props) => {
     return (
         <View style={styles.container}>
             <Text style={styles.name}>{props.album.name}</Text>
-            <FastImage
-                style={styles.cover}
-                source={{
-                    uri: 'http://graph.facebook.com/' + props.album.cover_photo.id + '/picture?type=normal',
-                    priority: FastImage.priority.high,
-                }}
-                resizeMode={FastImage.resizeMode.cover}
-            />
+            <SmartImage uri={'http://graph.facebook.com/' + props.album.cover_photo.id + '/picture?type=normal'} />
             <View style={styles.socialBar}>
                 <TouchableOpacity style={styles.buttonContainer}>
                     <Image source={LIKE} style={styles.button} />

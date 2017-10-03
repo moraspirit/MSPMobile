@@ -4,19 +4,14 @@ import FastImage from 'react-native-fast-image'
 import { Actions } from 'react-native-router-flux';
 import HTMLView from 'react-native-htmlview';
 
+import SmartImage from './SmartImage';
+
 const LIKE = require('../images/like.png');
 const SHARE = require('../images/share.png');
 
 const { height, width } = Dimensions.get('window');
 const renderCover = (uri) => {
-    return <FastImage
-        style={styles.cover}
-        source={{
-            uri: 'http://moraspirit.com/sites/default/files/styles/teaser_image/public/' + uri,
-            priority: FastImage.priority.high,
-        }}
-        resizeMode={FastImage.resizeMode.cover}
-    />
+    return <SmartImage uri={'http://moraspirit.com/sites/default/files/styles/teaser_image/public/' + uri} />
 }
 
 const ArticleCard = (props) => {
@@ -32,7 +27,7 @@ const ArticleCard = (props) => {
             {renderCover(props.article.uri.substring(9))}
             <TouchableOpacity
                 style={styles.summary}
-                onPress={() => { Actions.article({ nid: props.article.nid, title: props.article.title, cover: renderCover(props.article.uri.substring(9)) }) }}
+                onPress={() => { Actions.article({ nid: props.article.nid, title: props.article.title, articleTitle: props.article.title, cover: renderCover(props.article.uri.substring(9)) }) }}
             >
                 <HTMLView value={'<ft>' + props.article.body_summary + '...<a>Continue Reading</a></ft>'} stylesheet={htmlTagStyles} />
             </ TouchableOpacity>

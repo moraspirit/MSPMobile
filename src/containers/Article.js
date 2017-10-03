@@ -25,7 +25,7 @@ class Article extends Component {
         return (
             <ScrollView style={styles.container}>
                 <View style={styles.wrapper}>
-                    <Text style={styles.name}>{this.props.title}</Text>
+                    <Text style={styles.name}>{this.props.articleTitle}</Text>
                     {this.props.cover}
                     <View style={styles.summary}>
                         <HTMLView value={'<ft>' + this.props.bodyValue + '</ft>'} stylesheet={htmlTagStyles} />
