@@ -11,12 +11,12 @@ class Gallery extends Component {
 
     constructor(props) {
         super(props);
-        this.props.fetchInitialAlbums();
+       this.props.fetchInitialAlbums();
 
     }
 
     renderCard = ({ item }) => {
-        if (item && item.id === '213000905390257' || item.id === '383867768303569' || item.id === '153519138005101' || item.cover_photo == null) {
+        if (item && item.id === '213000905390257' || item.id === '383867768303569' || item.id === '153519138005101' || item.id === '751929568164052' || item.cover_photo == null) {
             return null;
         }
         return (<AlbumCard album={item} />);

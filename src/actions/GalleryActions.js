@@ -5,7 +5,7 @@ import {
     FETCHING_ERROR
 } from './types';
 
-const INITIAL_URL = 'https://graph.facebook.com/MoraSpirit.Official.fanpage/albums?fields=name,cover_photo{id},likes.limit(0).summary(true),comments.limit(0).summary(true)&limit=3';
+const INITIAL_URL = 'https://graph.facebook.com/MoraSpirit.Official.fanpage/albums?fields=name,cover_photo{id},likes.limit(0).summary(true),comments.limit(0).summary(true)&limit=8';
 
 export const fetchInitialAlbums = () => {
     return (dispatch) => {
@@ -28,7 +28,7 @@ export const fetchInitialAlbums = () => {
 
             })
             .catch((error) => {
-                console.error(error);
+                console.log(error);
                 dispatch({ type: FETCHING_ERROR });
             });
 

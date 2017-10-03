@@ -21,7 +21,7 @@ export const fetchRankings = () => {
                 }
             })
             .catch((error) => {
-                console.error(error);
+                console.log(error);
                 dispatch({ type: FETCHING_ERROR });
             });
     };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, Share } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, Share, Linking } from 'react-native';
 import FastImage from 'react-native-fast-image'
 import SmartImage from './SmartImage';
 
@@ -17,7 +17,20 @@ const AlbumCard = (props) => {
     return (
         <View style={styles.container}>
             <Text style={styles.name}>{props.album.name}</Text>
-            <SmartImage uri={'http://graph.facebook.com/' + props.album.cover_photo.id + '/picture?type=normal'} />
+            <TouchableOpacity
+                onPress={() => {
+                    let url = 'facebook:/photos?album=' + props.album.id + '&user=132093176814364';
+                    console.log(url);
+                    Linking.canOpenURL(url).then(supported => {
+                        if (!supported) {
+                            console.log('Can\'t handle url: ' + url);
+                        } else {
+                            return Linking.openURL(url);
+                        }
+                    }).catch(err => console.log('An error occurred', err));
+                }}>
+                <SmartImage uri={'http://graph.facebook.com/' + props.album.cover_photo.id + '/picture?type=normal'} />
+            </TouchableOpacity>
             <View style={styles.socialBar}>
                 <TouchableOpacity style={styles.buttonContainer}>
                     <Image source={LIKE} style={styles.button} />
