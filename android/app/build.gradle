@@ -91,7 +91,7 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "com.moraspirit"
@@ -102,6 +102,8 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        manifestPlaceholders = [onesignal_app_id: "d955f507-2386-450c-a218-0cd27ded5aa1",
+                                onesignal_google_project_number: "101029977116"]
     }
     signingConfigs {
         release {
@@ -144,6 +146,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-onesignal')
     compile project(':react-native-fbsdk')
     compile project(':react-native-fast-image')
     compile project(':react-native-vector-icons')
