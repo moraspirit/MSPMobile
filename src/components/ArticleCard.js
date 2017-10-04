@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         marginVertical: 4,
         borderRadius: 1,
         borderColor: 'black',
@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
         width: width
     },
     name: {
+        alignSelf: 'flex-start',
         fontSize: 23,
         fontWeight: 'bold',
         color: '#4f4a4a',
@@ -126,6 +127,7 @@ const styles = StyleSheet.create({
         marginBottom: 0
     },
     time: {
+        alignSelf: 'flex-start',
         marginHorizontal: 11,
         marginBottom: 5
     },
