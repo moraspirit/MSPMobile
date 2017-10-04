@@ -5,7 +5,7 @@ import {
     FETCHING_ERROR
 } from './types';
 
-const INITIAL_URL = 'https://graph.facebook.com/MoraSpirit.Official.fanpage/albums?fields=name,cover_photo{id},likes.limit(0).summary(true),comments.limit(0).summary(true)&limit=8';
+const INITIAL_URL = 'https://graph.facebook.com/MoraSpirit.Official.fanpage/albums?fields=name,created_time,cover_photo{id},likes.limit(0).summary(true),comments.limit(0).summary(true)&limit=8';
 
 export const fetchInitialAlbums = () => {
     return (dispatch) => {

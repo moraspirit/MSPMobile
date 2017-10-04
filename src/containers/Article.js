@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, ScrollView, Text, Image, StyleSheet, Dimensions, TouchableOpacity, TouchableHighlight, Share } from 'react-native';
 import { connect } from 'react-redux';
 import HTMLView from 'react-native-htmlview';
+import { getFullTime } from '../utils/Helpers';
 
 import { fetchArticle } from '../actions';
 
@@ -32,25 +33,12 @@ class Article extends Component {
             .catch(err => console.log(err));
     }
 
-    getTime = (timestamp) => {
-        dateTime = new Date(timestamp);
-        const arr = dateTime.toLocaleTimeString().split(':');
-        let time = arr[0] + ':' + arr[1];
-        if (arr[2].split(' ')[1] == 'PM') {
-            time += 'pm';
-        } else {
-            time += 'am';
-        }
-        // Sat Sep 30 2017 at 10.42pm
-        return dateTime.toDateString() + ' at ' + time;
-    }
-
     render() {
         return (
             <ScrollView style={styles.container}>
                 <View style={styles.wrapper}>
                     <Text style={styles.name}>{this.props.articleTitle}</Text>
-                    <Text style={styles.time}>{this.getTime(this.props.createdDate * 1000)}</Text>
+                    <Text style={styles.time}>{getFullTime(this.props.createdDate * 1000)}</Text>
                     {this.props.cover}
                     {this.renderLoadingView()}
                     <View style={styles.summary}>

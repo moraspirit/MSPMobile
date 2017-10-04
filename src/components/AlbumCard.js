@@ -2,10 +2,10 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, Share, Linking } from 'react-native';
 import FastImage from 'react-native-fast-image'
 import SmartImage from './SmartImage';
+import { getTime } from '../utils/Helpers';
 
 const LIKE = require('../images/like.png');
 const SHARE = require('../images/share.png');
-
 const { height, width } = Dimensions.get('window');
 
 const AlbumCard = (props) => {
@@ -17,6 +17,7 @@ const AlbumCard = (props) => {
     return (
         <View style={styles.container}>
             <Text style={styles.name}>{props.album.name}</Text>
+            <Text style={styles.time}>{getTime(props.album.created_time.split('+')[0] + '+00:00')}</Text> 
             <TouchableOpacity
                 onPress={() => {
                     let url = 'facebook:/photos?album=' + props.album.id + '&user=132093176814364';
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         marginVertical: 4,
         borderRadius: 1,
         borderColor: 'black',
@@ -64,7 +65,12 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 16,
         fontWeight: 'bold',
-        margin: 10
+        margin: 10,
+        marginBottom: 0
+    },
+    time: {
+        marginHorizontal: 11,
+        marginBottom: 5
     },
     socialBar: {
         flex: 1,
