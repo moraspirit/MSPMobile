@@ -27,12 +27,6 @@ class Article extends Component {
         }
     }
 
-    share = (nid, name) => {
-        Share.share({ message: name + ' http://www.moraspirit.com/node/' + nid + '\n#moraspirit', title: 'Mora Spirit' }, { dialogTitle: 'Share Article' })
-            .then((res) => { console.log(res) })
-            .catch(err => console.log(err));
-    }
-
     render() {
         return (
             <ScrollView style={styles.container}>
@@ -46,11 +40,11 @@ class Article extends Component {
                     </View>
                     <View style={styles.ruler} />
                     <View style={styles.socialBar}>
-                        <TouchableOpacity style={styles.buttonContainer}>
+                        {/* <TouchableOpacity style={styles.buttonContainer}>
                             <Image source={LIKE} style={styles.button} />
                             <Text style={styles.buttonText}>Like</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => { this.share(this.props.nid, this.props.title) }} style={styles.buttonContainer}>
+                        </TouchableOpacity> */}
+                        <TouchableOpacity onPress={this.props.shareArticle} style={styles.buttonContainer}>
                             <Image source={SHARE} style={styles.button} />
                             <Text style={styles.buttonText}>Share</Text>
                         </TouchableOpacity>

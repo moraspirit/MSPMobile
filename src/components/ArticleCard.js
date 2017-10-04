@@ -16,40 +16,40 @@ const renderCover = (uri) => {
 }
 
 const ArticleCard = (props) => {
-    const share = (nid, name) => {
+    const shareArticle = (nid, name) => {
         Share.share({ message: name + ' http://www.moraspirit.com/node/' + nid + '\n#moraspirit', title: 'Mora Spirit' }, { dialogTitle: 'Share Article' })
             .then((res) => { console.log(res) })
             .catch(err => console.log(err));;
     }
 
-    const like = () => {
+    // const like = () => {
 
-    }
+    // }
 
-    const logIntoFB = () => {
-        AccessToken.getCurrentAccessToken()
-            .then((res) => {
-                if (res) {
-                    console.log(res.accessToken);
-                    this.like();
-                } else {
-                    LoginManager.logInWithReadPermissions(['publish_pages']).then(
-                        (result) => {
-                            if (result.isCancelled) {
-                                alert('Login was cancelled');
-                            } else {
-                                alert('Login was successful with permissions: '
-                                    + result.grantedPermissions.toString());
-                                this.like();
-                            }
-                        },
-                        (error) => {
-                            alert('Login failed with error: ' + error);
-                        }
-                    );
-                }
-            });
-    }
+    // const logIntoFB = () => {
+    //     AccessToken.getCurrentAccessToken()
+    //         .then((res) => {
+    //             if (res) {
+    //                 console.log(res.accessToken);
+    //                 this.like();
+    //             } else {
+    //                 LoginManager.logInWithReadPermissions(['publish_pages']).then(
+    //                     (result) => {
+    //                         if (result.isCancelled) {
+    //                             alert('Login was cancelled');
+    //                         } else {
+    //                             alert('Login was successful with permissions: '
+    //                                 + result.grantedPermissions.toString());
+    //                             this.like();
+    //                         }
+    //                     },
+    //                     (error) => {
+    //                         alert('Login failed with error: ' + error);
+    //                     }
+    //                 );
+    //             }
+    //         });
+    // }
 
     return (
         <View style={styles.container}>
@@ -58,24 +58,33 @@ const ArticleCard = (props) => {
             {renderCover(props.article.uri.substring(9))}
             <TouchableOpacity
                 style={styles.summary}
-                onPress={() => { Actions.article({ nid: props.article.nid, title: props.article.title, articleTitle: props.article.title, createdDate:props.article.created, cover: renderCover(props.article.uri.substring(9)) }) }}
+                onPress={() => {
+                    Actions.article({
+                        nid: props.article.nid,
+                        title: props.article.title,
+                        articleTitle: props.article.title,
+                        createdDate: props.article.created,
+                        cover: renderCover(props.article.uri.substring(9)),
+                        shareArticle: () => { shareArticle(props.article.nid, props.article.title) }
+                    })
+                }}
             >
                 <HTMLView value={'<ft>' + props.article.body_summary + '...<a>Continue Reading</a></ft>'} stylesheet={htmlTagStyles} />
             </ TouchableOpacity>
             <View style={styles.ruler} />
             <View style={styles.socialBar}>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                     style={styles.buttonContainer}
                     onPress={() => { this.logIntoFB() }}>
                     <Image source={LIKE} style={styles.button} />
                     <Text style={styles.buttonText}>Like</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => { this.share(props.article.nid, props.article.title) }} style={styles.buttonContainer}>
+                </TouchableOpacity> */}
+                <TouchableOpacity onPress={() => { shareArticle(props.article.nid, props.article.title) }} style={styles.buttonContainer}>
                     <Image source={SHARE} style={styles.button} />
                     <Text style={styles.buttonText}>Share</Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </View >
     );
 }
 

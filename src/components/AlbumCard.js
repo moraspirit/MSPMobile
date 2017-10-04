@@ -10,7 +10,7 @@ const { height, width } = Dimensions.get('window');
 
 const AlbumCard = (props) => {
 
-    share = (id, name) => {
+    const shareAlbum = (id, name) => {
         Share.share({ message: name + ' https://www.facebook.com/MoraSpirit.Official.fanpage/photos/?tab=album&album_id=' + id + '\n#moraspirit', title: 'Mora Spirit' }, { dialogTitle: 'Share Album' });
     }
 
@@ -33,11 +33,11 @@ const AlbumCard = (props) => {
                 <SmartImage uri={'http://graph.facebook.com/' + props.album.cover_photo.id + '/picture?type=normal'} />
             </TouchableOpacity>
             <View style={styles.socialBar}>
-                <TouchableOpacity style={styles.buttonContainer}>
+                {/* <TouchableOpacity style={styles.buttonContainer}>
                     <Image source={LIKE} style={styles.button} />
                     <Text style={styles.buttonText}>Like</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => { this.share(props.album.id, props.album.name) }} style={styles.buttonContainer}>
+                </TouchableOpacity> */}
+                <TouchableOpacity onPress={() => { shareAlbum(props.album.id, props.album.name) }} style={styles.buttonContainer}>
                     <Image source={SHARE} style={styles.button} />
                     <Text style={styles.buttonText}>Share</Text>
                 </TouchableOpacity>
