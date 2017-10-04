@@ -32,11 +32,25 @@ class Article extends Component {
             .catch(err => console.log(err));
     }
 
+    getTime = (timestamp) => {
+        dateTime = new Date(timestamp);
+        const arr = dateTime.toLocaleTimeString().split(':');
+        let time = arr[0] + ':' + arr[1];
+        if (arr[2].split(' ')[1] == 'PM') {
+            time += 'pm';
+        } else {
+            time += 'am';
+        }
+        // Sat Sep 30 2017 at 10.42pm
+        return dateTime.toDateString() + ' at ' + time;
+    }
+
     render() {
         return (
             <ScrollView style={styles.container}>
                 <View style={styles.wrapper}>
                     <Text style={styles.name}>{this.props.articleTitle}</Text>
+                    <Text style={styles.time}>{this.getTime(this.props.createdDate * 1000)}</Text>
                     {this.props.cover}
                     {this.renderLoadingView()}
                     <View style={styles.summary}>
@@ -83,7 +97,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         marginVertical: 4,
         borderRadius: 1,
         borderColor: 'black',
@@ -97,7 +111,12 @@ const styles = StyleSheet.create({
         fontSize: 23,
         fontWeight: 'bold',
         color: '#4f4a4a',
-        margin: 10
+        margin: 10,
+        marginBottom: 0
+    },
+    time: {
+        marginHorizontal: 11,
+        marginBottom: 5
     },
     summary: {
         margin: 10

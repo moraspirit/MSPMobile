@@ -3,37 +3,120 @@ import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, Share } fr
 import FastImage from 'react-native-fast-image'
 import { Actions } from 'react-native-router-flux';
 import HTMLView from 'react-native-htmlview';
-
+import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import SmartImage from './SmartImage';
 
 const LIKE = require('../images/like.png');
 const SHARE = require('../images/share.png');
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
 
 const { height, width } = Dimensions.get('window');
+
 const renderCover = (uri) => {
     return <SmartImage uri={'http://moraspirit.com/sites/default/files/styles/teaser_image/public/' + uri} />
 }
 
 const ArticleCard = (props) => {
-    share = (nid, name) => {
+    const share = (nid, name) => {
         Share.share({ message: name + ' http://www.moraspirit.com/node/' + nid + '\n#moraspirit', title: 'Mora Spirit' }, { dialogTitle: 'Share Article' })
             .then((res) => { console.log(res) })
             .catch(err => console.log(err));;
     }
 
+    const like = () => {
+
+    }
+
+    const logIntoFB = () => {
+        AccessToken.getCurrentAccessToken()
+            .then((res) => {
+                if (res) {
+                    console.log(res.accessToken);
+                    this.like();
+                } else {
+                    LoginManager.logInWithReadPermissions(['publish_pages']).then(
+                        (result) => {
+                            if (result.isCancelled) {
+                                alert('Login was cancelled');
+                            } else {
+                                alert('Login was successful with permissions: '
+                                    + result.grantedPermissions.toString());
+                                this.like();
+                            }
+                        },
+                        (error) => {
+                            alert('Login failed with error: ' + error);
+                        }
+                    );
+                }
+            });
+    }
+
+    getTime = (timestamp) => {
+        dateTime = new Date(timestamp);
+        const month = dateTime.getMonth();
+        const date = dateTime.getDate();
+
+        const arr = dateTime.toLocaleTimeString().split(':');
+        let time = arr[0] + ':' + arr[1];
+        if (arr[2].split(' ')[1] == 'PM') {
+            time += 'pm';
+        } else {
+            time += 'am';
+        }
+
+        const nowStamp = (new Date()).getTime();
+        const diff = nowStamp - timestamp;
+        const diffInMins = diff / (1000 * 60);
+
+        // 20 mins
+        if (diffInMins < 60) {
+            return Math.ceil(diffInMins) + ' mins ago';
+        }
+
+        // 1 hour ago
+        if (Math.floor(diffInMins / 60) == 1) {
+            return '1 hour ago';
+        }
+
+        // 16 hours ago
+        if (diffInMins < 1440) {
+            return Math.floor(diffInMins / 60) + ' hours ago';
+        }
+
+        // yesterday at 10.42pm
+        if (diffInMins < 2880) {
+            return 'yesterday at ' + time;
+        }
+
+        // x days ago  (x up to 6)
+        if (diffInMins < 10080) {
+            return Math.floor(diffInMins / 1440) + ' days ago';
+        }
+
+        // Oct 3 at 10.42pm
+        return monthNames[month] + ' ' + date + ' at ' + time;
+
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.name}>{props.article.title}</Text>
+            <Text style={styles.time}>{this.getTime(props.article.created * 1000)}</Text>
             {renderCover(props.article.uri.substring(9))}
             <TouchableOpacity
                 style={styles.summary}
-                onPress={() => { Actions.article({ nid: props.article.nid, title: props.article.title, articleTitle: props.article.title, cover: renderCover(props.article.uri.substring(9)) }) }}
+                onPress={() => { Actions.article({ nid: props.article.nid, title: props.article.title, articleTitle: props.article.title, createdDate:props.article.created, cover: renderCover(props.article.uri.substring(9)) }) }}
             >
                 <HTMLView value={'<ft>' + props.article.body_summary + '...<a>Continue Reading</a></ft>'} stylesheet={htmlTagStyles} />
             </ TouchableOpacity>
             <View style={styles.ruler} />
             <View style={styles.socialBar}>
-                <TouchableOpacity style={styles.buttonContainer}>
+                <TouchableOpacity
+                    style={styles.buttonContainer}
+                    onPress={() => { this.logIntoFB() }}>
                     <Image source={LIKE} style={styles.button} />
                     <Text style={styles.buttonText}>Like</Text>
                 </TouchableOpacity>
@@ -66,7 +149,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         marginVertical: 4,
         borderRadius: 1,
         borderColor: 'black',
@@ -80,7 +163,12 @@ const styles = StyleSheet.create({
         fontSize: 23,
         fontWeight: 'bold',
         color: '#4f4a4a',
-        margin: 10
+        margin: 10,
+        marginBottom: 0
+    },
+    time: {
+        marginHorizontal: 11,
+        marginBottom: 5
     },
     summary: {
         margin: 10
