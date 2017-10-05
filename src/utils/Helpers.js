@@ -48,6 +48,15 @@ export const getTime = (timestamp) => {
     const nowStamp = (nowDate).getTime();
     const diff = nowStamp - timestamp;
     const diffInMins = diff / (1000 * 60);
+    // now
+    if (diffInMins < 1) {
+        return 'now';
+    }
+
+    // 1 min ago
+    if (diffInMins < 2) {
+        return '1 min ago';
+    }
 
     // 20 mins
     if (diffInMins < 60) {

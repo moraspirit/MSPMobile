@@ -8,6 +8,7 @@ import Articles from '../containers/Articles';
 import Article from '../containers/Article';
 import Gallery from '../containers/Gallery';
 import Rankings from '../containers/Rankings';
+import Notifications from '../containers/Notifications';
 import About from '../containers/About';
 import Modal from '../containers/Modal';
 import DrawerContent from './DrawerContent';
@@ -31,7 +32,7 @@ const NavigationRouter = () => (
                             animationEnabled
                             lazy>
                             <Scene
-                                initial
+
                                 key="articles"
                                 component={Articles}
                                 title='Articles'
@@ -53,6 +54,15 @@ const NavigationRouter = () => (
                                 key="rankings"
                                 component={Rankings}
                                 title='Rankings'
+                                navBarButtonColor='white'
+                                hideNavBar
+                                icon={TabIcon}
+                            />
+                            <Scene
+                                initial      
+                                key="notifications"
+                                component={Notifications}
+                                title='Notifications'
                                 navBarButtonColor='white'
                                 hideNavBar
                                 icon={TabIcon}

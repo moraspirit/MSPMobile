@@ -12,3 +12,6 @@ export const ARTICLES_FETCH_SUCCESS = 'articles_fetch_success';
 
 export const FETCHING_ARTICLE = 'fetching_article';
 export const ARTICLE_FETCH_SUCCESS = 'article_fetch_success';
+
+export const NOTIFICATION_RECEIVED = 'notification_received';
+export const NOTIFICATIONS_RECEIVED = 'notifications_received';

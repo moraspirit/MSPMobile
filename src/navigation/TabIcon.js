@@ -9,8 +9,10 @@ const TabIcon = (props) => {
     if (props.title === 'Gallery') {
         return <View><Icon name="ios-images-outline" size={30} color={props.focused ? '#1893cc' : 'grey'} /></View>
     }
-    return <View><Icon name="ios-ribbon-outline" size={30} color={props.focused ? '#1893cc' : 'grey'} /></View>
+    if (props.title === 'Rankings') {
+        return <View><Icon name="ios-ribbon-outline" size={30} color={props.focused ? '#1893cc' : 'grey'} /></View>
+    }
+    return <View><Icon name="ios-notifications-outline" size={30} color={props.focused ? '#1893cc' : 'grey'} /></View>
 };
-
 
 export default TabIcon;

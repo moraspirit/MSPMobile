@@ -3,8 +3,36 @@ import { AsyncStorage } from 'react-native';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import ReduxThunk from 'redux-thunk';
 import _ from 'lodash';
+import OneSignal from 'react-native-onesignal';
 import reducers from '../reducers';
 import { REDUX_OFFLINE_STORE } from './AsyncKeys';
+import { NOTIFICATION_RECEIVED, NOTIFICATIONS_RECEIVED } from '../actions/types';
+
+let store = null;
+const buffer = [];
+
+export const onReceived = (notification) => {
+    console.log("Notification received: ", notification);
+}
+
+export const onOpened = (openResult) => {
+    console.log('openResult: ', openResult);
+    if (openResult.notification.groupedNotifications) {
+        // stacked notifications
+        buffer = buffer.concat(openResult.notification.groupedNotifications);
+    } else {
+        // single notification
+        buffer.push(openResult.notification.payload);
+    }
+}
+
+export const onRegistered = (notifData) => {
+    console.log("Device had been registered for push notifications!", notifData);
+}
+
+export const onIds = (device) => {
+    console.log('Device info: ', device);
+}
 
 // creates the store
 export const InitializeApp = () => {
@@ -40,7 +68,11 @@ export const InitializeApp = () => {
     // add the autoRehydrate enhancer
     enhancers.push(autoRehydrate());
 
-    const store = createStore(reducers, {}, compose(...enhancers));
+    store = createStore(reducers, {}, compose(...enhancers));
+
+
+
+
 
     persistStore(store, {
         storage: AsyncStorage,
@@ -50,6 +82,18 @@ export const InitializeApp = () => {
     },
         () => {
             console.log('Rehydration completed!');
+            console.log('notification buffer ', buffer);
+            buffer.forEach((item) => {
+                // Filter out notifications
+                const notification = {
+                    notificationID: item.notificationID,
+                    body: item.body,
+                    title: item.title,
+                    sentTime: JSON.parse(item.rawPayload)['google.sent_time']
+                }
+                store.dispatch({ type: NOTIFICATION_RECEIVED, payload: notification });
+            });
+
         }
     );
 
