@@ -12,6 +12,7 @@ import { NOTIFICATION_RECEIVED, NOTIFICATIONS_RECEIVED } from '../actions/types'
 
 let store = null;
 const buffer = [];
+let isOpenedFromNotification = false;
 
 export const onReceived = (data) => {
     console.log("Notification received: ", data);
@@ -34,7 +35,7 @@ export const onOpened = (openResult) => {
         buffer.push(openResult.notification.payload);
     }
     if (!openResult.notification.isAppInFocus) {
-        Actions['notifications'].call();
+        isOpenedFromNotification = true;
     }
 }
 
@@ -52,7 +53,7 @@ export const InitializeApp = () => {
     SplashScreen.close({
         animationType: SplashScreen.animationType.scale,
         duration: 850,
-        delay: 800,
+        delay: 100,
     });
 
     /* ------------- Redux Configuration ------------- */
@@ -109,6 +110,10 @@ export const InitializeApp = () => {
                 }
                 store.dispatch({ type: NOTIFICATION_RECEIVED, payload: notification });
             });
+
+            if (isOpenedFromNotification) {
+                Actions.notifications();
+            }
 
         }
     );
