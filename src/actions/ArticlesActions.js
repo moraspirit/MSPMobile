@@ -7,9 +7,9 @@ import {
 
 let uri = 'http://128.199.230.133/';
 
-if (process.env.NODE_ENV != 'production') {
-    uri = 'http://192.168.43.58:8080/';
-}
+// if (process.env.NODE_ENV != 'production') {
+//     uri = 'http://192.168.43.58:8080/';
+// }
 
 export const fetchInitialArticles = () => {
     return (dispatch) => {

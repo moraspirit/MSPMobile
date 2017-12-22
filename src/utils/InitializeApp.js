@@ -4,6 +4,7 @@ import { persistStore, autoRehydrate } from 'redux-persist';
 import ReduxThunk from 'redux-thunk';
 import _ from 'lodash';
 import OneSignal from 'react-native-onesignal';
+import { Actions } from 'react-native-router-flux';
 import reducers from '../reducers';
 import { REDUX_OFFLINE_STORE } from './AsyncKeys';
 import { NOTIFICATION_RECEIVED, NOTIFICATIONS_RECEIVED } from '../actions/types';
@@ -11,8 +12,15 @@ import { NOTIFICATION_RECEIVED, NOTIFICATIONS_RECEIVED } from '../actions/types'
 let store = null;
 const buffer = [];
 
-export const onReceived = (notification) => {
-    console.log("Notification received: ", notification);
+export const onReceived = (data) => {
+    console.log("Notification received: ", data);
+    const notification = {
+        notificationID: data.payload.notificationID,
+        body: data.payload.body,
+        title: data.payload.title,
+        sentTime: JSON.parse(data.payload.rawPayload)['google.sent_time']
+    }
+    store.dispatch({ type: NOTIFICATION_RECEIVED, payload: notification });
 }
 
 export const onOpened = (openResult) => {
@@ -23,6 +31,9 @@ export const onOpened = (openResult) => {
     } else {
         // single notification
         buffer.push(openResult.notification.payload);
+    }
+    if (!openResult.notification.isAppInFocus) {
+        Actions['notifications'].call();
     }
 }
 
@@ -82,6 +93,8 @@ export const InitializeApp = () => {
     },
         () => {
             console.log('Rehydration completed!');
+
+            // notifications received when the app is closed, got in to the buffer until store initialized, then do the dispatch
             console.log('notification buffer ', buffer);
             buffer.forEach((item) => {
                 // Filter out notifications

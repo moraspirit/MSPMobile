@@ -28,43 +28,37 @@ const NavigationRouter = () => (
                             showLabel={false}
                             tabBarStyle={styles.tabBarStyle}
                             activeTintColor='#0a76a8'
-
                             animationEnabled
-                            lazy>
+                            lazy
+                            tabBarPosition='bottom'
+                            hideNavBar
+                        >
                             <Scene
-
+                                initial
                                 key="articles"
                                 component={Articles}
-                                title='Articles'
-                                hideNavBar
+                                title='MoraSpirit Articles'
                                 icon={TabIcon}
-
                             />
                             <Scene
-                                back
                                 key="gallery"
                                 component={Gallery}
                                 title='Gallery'
                                 navBarButtonColor='white'
-                                hideNavBar
                                 icon={TabIcon}
                             />
                             <Scene
-                                back
                                 key="rankings"
                                 component={Rankings}
                                 title='Rankings'
                                 navBarButtonColor='white'
-                                hideNavBar
                                 icon={TabIcon}
                             />
                             <Scene
-                                initial      
                                 key="notifications"
                                 component={Notifications}
-                                title='Notifications'
+                                title='MoraSpirit News'
                                 navBarButtonColor='white'
-                                hideNavBar
                                 icon={TabIcon}
                             />
                         </Tabs>

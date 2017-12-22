@@ -6,14 +6,14 @@ import {
 } from './types';
 
 const INITIAL_URL = 'https://graph.facebook.com/MoraSpirit.Official.fanpage/albums?fields=name,created_time,cover_photo{id},likes.limit(0).summary(true),comments.limit(0).summary(true)&limit=8';
-
+const USER_TOKEN = '1029152467120891|rm-65wG2HiJyDoansSlnFg6zKuM';
 export const fetchInitialAlbums = () => {
     return (dispatch) => {
         dispatch({ type: FETCHING_ALBUMS });
         fetch(INITIAL_URL, {
             method: 'get',
             headers: {
-                'Authorization': 'OAuth EAAOoAjs48vsBAJ0UZCcEMTVxniQtwkmMMjSZAXCKZAqg2uzUoykwJWFZB0phSTTkSKcguZAfPUll1BamoanOYGNRv2XI4j0ZB0GPtfR5aX5t8h8juuG9YOpkzbTyoA5Tk9OXcvt9mGh19RIWuVrv78azfA6ABZB594e3gZBC5z1AugZDZD',
+                'Authorization': 'OAuth ' + USER_TOKEN,
                 'Content-Type': 'application/json'
             }
         })
@@ -41,7 +41,7 @@ export const fetchAlbums = (nextURL) => {
         fetch(nextURL + '&limit=30', {
             method: 'get',
             headers: {
-                'Authorization': 'OAuth EAAOoAjs48vsBAJ0UZCcEMTVxniQtwkmMMjSZAXCKZAqg2uzUoykwJWFZB0phSTTkSKcguZAfPUll1BamoanOYGNRv2XI4j0ZB0GPtfR5aX5t8h8juuG9YOpkzbTyoA5Tk9OXcvt9mGh19RIWuVrv78azfA6ABZB594e3gZBC5z1AugZDZD',
+                'Authorization': 'OAuth ' + USER_TOKEN,
                 'Content-Type': 'application/json'
             }
         })

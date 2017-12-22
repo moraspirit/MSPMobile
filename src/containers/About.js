@@ -20,7 +20,7 @@ class About extends Component {
           standards, create intelligent and well-rounded university undergraduates instilled with invaluable qualities
           and disciplines nurtured by sports and also to draw interest of authorities and other stakeholders towards
           them.
-          More than a website, MoraSpirit acts as a social network itself, gathering the university community together,
+          More than a website and a mobile app, MoraSpirit acts as a social network itself, gathering the university community together,
           forming a sports culture. Given there was no entity to showcase university sports in general, MoraSpirit
           focused broadly on recognizing all university sportsmen and women in an unbiased manner. In 2010, MoraSpirit
           took on the challenge of covering Sri Lanka University Games (SLUG), delivering great results.
@@ -31,9 +31,14 @@ class About extends Component {
           almost all university sports events. In addition, it carries out programs for sportsmen/women at the
           University of Moratuwa.
           At the time being, an article on average receives 150-200 hits and fans on Facebook fan page have exceeded
-          28000+. Thanks to an enthusiastic crew MoraSpirit has become the destination of choice for anyone wanting to
+          49000+. Thanks to an enthusiastic crew MoraSpirit has become the destination of choice for anyone wanting to
           catch up on the latest university sports news.
           </Text>
+                </View>
+                <View style={styles.card}>
+                    <Text selectable>078 391 0804</Text>
+                    <Text selectable>info@moraspirit.com </Text>
+                    <Text selectable>www.moraspirit.com</Text>
                 </View>
             </ScrollView>
         );
@@ -43,27 +48,25 @@ class About extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-
         backgroundColor: '#efefef',
-
     },
     card: {
-
-        margin: 25,
+        marginVertical: 10,
+        marginHorizontal: 25,
         paddingHorizontal: 15,
-        paddingBottom: 15,
+        paddingVertical: 15,
         backgroundColor: '#fff',
         elevation: 2,
     },
     title: {
         fontSize: 20,
         fontWeight: 'bold',
-        textAlign: 'center',
+        textAlign: 'left',
         margin: 10
     },
     para: {
         fontSize: 16,
-        lineHeight: 20
+        lineHeight: 25
     }
 });
 

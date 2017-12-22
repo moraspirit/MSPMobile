@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const TabIcon = (props) => {
-    if (props.title == 'Articles') {
+    if (props.title == 'MoraSpirit Articles') {
         return <View><Icon name="ios-paper-plane-outline" size={30} color={props.focused ? '#1893cc' : 'grey'} /></View>
     }
     if (props.title === 'Gallery') {

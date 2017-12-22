@@ -89,6 +89,21 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+/**
+ * MAJOR version when you make incompatible API changes,
+ * MINOR version when you add functionality in a backwards-compatible manner, and
+ * PATCH version when you make backwards-compatible bug fixes.
+ * More:- http://semver.org/ 
+**/
+
+ext.versionMajor = 1
+ext.versionMinor = 0
+ext.versionPatch = 0
+ext.versionClassifier = null
+ext.isAlpha = false
+ext.isBeta = true
+ext.minimumSdkVersion = 16
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -97,8 +112,8 @@ android {
         applicationId "com.moraspirit"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode generateVersionCode() // 040030100  Version code for 3.1.0 version name and minimum api level 4
+        versionName generateVersionName() // 3.1.0-SNAPSHOT
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -161,4 +176,25 @@ dependencies {
 task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
+}
+
+private Integer generateVersionCode() {
+	return ext.minimumSdkVersion * 10000000 + ext.versionMajor * 10000 + ext.versionMinor * 100 + ext.versionPatch
+}
+
+private String generateVersionName() {
+	String versionName = "${ext.versionMajor}.${ext.versionMinor}.${ext.versionPatch}"
+	if (ext.versionClassifier == null) {
+		if (ext.isAlpha) {
+			ext.versionClassifier = "alpha"
+		}
+        if (ext.isBeta) {
+			ext.versionClassifier = "beta"
+		}
+	}
+
+	if (ext.versionClassifier != null) {
+		versionName += "-" + ext.versionClassifier
+	}
+	return versionName;
 }
