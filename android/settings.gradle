@@ -1,4 +1,6 @@
 rootProject.name = 'MoraSpirit'
+include ':react-native-smart-splash-screen'
+project(':react-native-smart-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-smart-splash-screen/android')
 include ':react-native-onesignal'
 project(':react-native-onesignal').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-onesignal/android')
 include ':react-native-fast-image'

@@ -5,6 +5,7 @@ import ReduxThunk from 'redux-thunk';
 import _ from 'lodash';
 import OneSignal from 'react-native-onesignal';
 import { Actions } from 'react-native-router-flux';
+import SplashScreen from 'react-native-smart-splash-screen'
 import reducers from '../reducers';
 import { REDUX_OFFLINE_STORE } from './AsyncKeys';
 import { NOTIFICATION_RECEIVED, NOTIFICATIONS_RECEIVED } from '../actions/types';
@@ -47,8 +48,14 @@ export const onIds = (device) => {
 
 // creates the store
 export const InitializeApp = () => {
-    /* ------------- Redux Configuration ------------- */
+    // Close spash scren
+    SplashScreen.close({
+        animationType: SplashScreen.animationType.scale,
+        duration: 850,
+        delay: 800,
+    });
 
+    /* ------------- Redux Configuration ------------- */
     const middleware = [];
     const enhancers = [];
 
@@ -80,10 +87,6 @@ export const InitializeApp = () => {
     enhancers.push(autoRehydrate());
 
     store = createStore(reducers, {}, compose(...enhancers));
-
-
-
-
 
     persistStore(store, {
         storage: AsyncStorage,
