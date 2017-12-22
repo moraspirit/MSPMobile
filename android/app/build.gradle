@@ -98,7 +98,7 @@ def enableProguardInReleaseBuilds = false
 
 ext.versionMajor = 1
 ext.versionMinor = 0
-ext.versionPatch = 0
+ext.versionPatch = 1
 ext.versionClassifier = null
 ext.isAlpha = false
 ext.isBeta = true
@@ -162,7 +162,6 @@ android {
 
 dependencies {
     compile project(':react-native-onesignal')
-    compile project(':react-native-fbsdk')
     compile project(':react-native-fast-image')
     compile project(':react-native-vector-icons')
     compile fileTree(dir: "libs", include: ["*.jar"])

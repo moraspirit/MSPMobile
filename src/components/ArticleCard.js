@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, Share } fr
 import FastImage from 'react-native-fast-image'
 import { Actions } from 'react-native-router-flux';
 import HTMLView from 'react-native-htmlview';
-import { LoginManager, AccessToken } from 'react-native-fbsdk';
+// import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import SmartImage from './SmartImage';
 import { getTime } from '../utils/Helpers';
 
