@@ -43,7 +43,7 @@ class DrawerContent extends Component {
                     <View style={styles.ruler} />
                     <DrawerButton icon={ABOUT} text='About' nav={() => { this.handleNav('about'); }} />
                 </View>
-                <Text style={styles.footer}>© 2017 | www.moraspirit.com</Text>
+                <Text style={styles.footer}>© 2018 | www.moraspirit.com</Text>
             </ScrollView>
         );
     }
