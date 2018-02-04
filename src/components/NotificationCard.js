@@ -1,16 +1,19 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, Share, Linking } from 'react-native';
 import { getTime } from '../utils/Helpers';
+import SwipableCard from '../components/SwipableCard';
 
 const { height, width } = Dimensions.get('window');
 
 const NotificationCard = (props) => {
-    // console.log('props are ', props)
+
     return (
-        <View style={styles.container}>
-            <Text style={styles.body}>{props.notification.body}</Text>
-            <Text style={styles.time}>{getTime(props.notification.sentTime)}</Text>
-        </View>
+        <SwipableCard onSwipe={() => props.onSwipe(props.notification.sentTime)}>
+            <View style={styles.container}>
+                <Text style={styles.body}>{props.notification.body}</Text>
+                <Text style={styles.time}>{getTime(props.notification.sentTime)}</Text>
+            </View>
+        </SwipableCard>
     );
 }
 
@@ -20,9 +23,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         marginVertical: 0.2,
-        borderRadius: 1,
-        borderColor: 'black',
-        elevation: 2,
         width
     },
     body: {

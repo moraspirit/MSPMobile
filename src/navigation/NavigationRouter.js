@@ -24,7 +24,7 @@ const NavigationRouter = () => (
                     <Scene key="root"  >
                         <Tabs
                             key="tabbar"
-                            swipeEnabled
+                            swipeEnabled = {true}
                             showLabel={false}
                             tabBarStyle={styles.tabBarStyle}
                             activeTintColor='#0a76a8'
