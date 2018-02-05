@@ -1,20 +1,42 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, StyleSheet } from 'react-native';
+import { View, ScrollView, Text, StyleSheet, WebView, TouchableOpacity, Dimensions, Linking } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+const { width } = Dimensions.get('window');
 
 class About extends Component {
+    openURL(url) {
+        Linking.canOpenURL(url).then(supported => {
+            if (!supported) {
+                console.log('Can\'t handle url: ' + url);
+                // open browser
+            } else {
+                return Linking.openURL(url);
+            }
+        }).catch(err => console.error('An error occurred', err));
+    }
+
+    getIcon(icon, color) {
+        return <Icon name={icon} size={35} color={color ? color : 'grey'} />
+    }
 
     render() {
         return (
             <ScrollView style={styles.container}>
                 <View style={styles.card}>
-                    <Text style={styles.title}>Our Vision</Text>
+                    <View style={styles.header}>
+                        {this.getIcon('ios-eye-outline')}
+                        <Text style={styles.title}>Our Vision</Text>
+                    </View>
                     <Text style={styles.para}>
                         To become the leader in creating a proud, highly-intense sporting culture at university level
           in Sri Lanka,
           by promoting healthy competition and encouraging participation in sports which help undergraduates grow into
           well-rounded individuals
                 </Text>
-                    <Text style={styles.title}>Our Mission</Text>
+                    <View style={styles.header}>
+                        {this.getIcon('ios-compass-outline')}
+                        <Text style={styles.title}>Our Mission</Text>
+                    </View>
                     <Text style={styles.para}>MoraSpirit – The Spirit of University Sports was launched in September 2009. It provides up to date reporting
           of sporting events in the university arena. MoraSpirit aims to uplift university sports to the highest of
           standards, create intelligent and well-rounded university undergraduates instilled with invaluable qualities
@@ -35,24 +57,49 @@ class About extends Component {
           catch up on the latest university sports news.
           </Text>
                 </View>
+
                 <View style={styles.card}>
-                    <Text selectable>078 391 0804</Text>
-                    <Text selectable>info@moraspirit.com </Text>
-                    <Text selectable>www.moraspirit.com</Text>
+                    <TouchableOpacity
+                        onPress={() => this.openURL('http://www.moraspirit.com/')}
+                        style={styles.socialButton}>
+                        {this.getIcon('ios-globe-outline')}<Text style={styles.socialText} >Official website</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => this.openURL('mailto:info@moraspirit.com')}
+                        style={styles.socialButton}>
+                        {this.getIcon('ios-mail-outline')}<Text style={styles.socialText} >Email us</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => this.openURL('https://www.facebook.com/pg/MoraSpirit.Official.fanpage')}
+                        style={styles.socialButton}>
+                        {this.getIcon('logo-facebook', '#3b5998')}<Text style={styles.socialText} >Find us on facebook</Text>
+                    </TouchableOpacity>
                 </View>
+
             </ScrollView>
         );
     }
 }
 
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#efefef',
+        paddingTop: 5,
+        paddingBottom: 10
+    },
+    header: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
     },
     card: {
-        marginVertical: 10,
-        marginHorizontal: 25,
+        marginVertical: 5,
+        marginHorizontal: 0,
         paddingHorizontal: 15,
         paddingVertical: 15,
         backgroundColor: '#fff',
@@ -62,11 +109,29 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'left',
-        margin: 10
+        marginVertical: 10,
+        marginLeft: 15
     },
     para: {
         fontSize: 16,
-        lineHeight: 25
+        lineHeight: 28
+    },
+    socialText: {
+        marginLeft: 40,
+        fontSize: 16
+    },
+    socialButton: {
+        flex: 1,
+        borderRadius: 50,
+        borderColor: '#878484',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        padding: 5,
+        paddingHorizontal: 40,
+        flexDirection: 'row',
+        margin: 5,
+        marginHorizontal: 50,
+        elevation: 1
     }
 });
 
