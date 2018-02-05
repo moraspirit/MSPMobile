@@ -98,10 +98,10 @@ def enableProguardInReleaseBuilds = false
 
 ext.versionMajor = 1
 ext.versionMinor = 1
-ext.versionPatch = 3
+ext.versionPatch = 4
 ext.versionClassifier = null
 ext.isAlpha = false
-ext.isBeta = true
+ext.isBeta = false
 ext.minimumSdkVersion = 16
 
 android {
