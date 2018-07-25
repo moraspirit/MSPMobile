@@ -38,7 +38,7 @@ class DrawerContent extends Component {
                     <DrawerButton icon={ARTICLES} text='Articles' nav={() => { this.handleNav('articles'); }} />
                     <DrawerButton icon={GALLERY} text='Gallery' nav={() => { this.handleNav('gallery'); }} />
                     <View style={styles.ruler} />
-                    <Text style={styles.title}>Inter Uni Games 2017</Text>
+                    <Text style={styles.title}>Inter Uni Games 2018</Text>
                     <DrawerButton icon={RANKINGS} text='Rankings' nav={() => { this.handleNav('rankings'); }} />
                     <View style={styles.ruler} />
                     <DrawerButton icon={ABOUT} text='About' nav={() => { this.handleNav('about'); }} />
