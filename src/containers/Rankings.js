@@ -21,7 +21,7 @@ class Rankings extends Component {
             <View style={styles.container}>
                 <FlatList
                     style={styles.list}
-                    ListHeaderComponent={ListHeader({ headerImage: HEADER, title:'Inter University Games 2017 Ranking', discription:'Overall ranking based on points earned so far...' })}
+                    ListHeaderComponent={ListHeader({ headerImage: HEADER, title:'Inter University Games 2018 Ranking', discription:'Overall ranking based on points earned so far...' })}
                     data={this.props.ranks}
                     renderItem={this.renderCard}
                     keyExtractor={item => item.name}
