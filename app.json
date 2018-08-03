@@ -1,4 +1,7 @@
 {
   "name": "MoraSpirit",
-  "displayName": "MoraSpirit"
+  "displayName": "MoraSpirit",
+  "expo": {
+    "sdkVersion":"22.0.0"
+  }
 }
