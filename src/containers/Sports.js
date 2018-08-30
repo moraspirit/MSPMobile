@@ -5,8 +5,8 @@ class Sports extends Component {
 
     render() {
         return (
-            <ScrollView style={StyleSheet.container}>
-                <View style={StyleSheet.card}>
+            <ScrollView style={styles.container}>
+                <View style={styles.card}>
                     <Text style = {styles.title}>Basketball</Text>
                     <Text style = {styles.para}>venue   : New gym</Text>
                     <Text style = {styles.para}>Time    : 6.00pm Every Monday</Text>
@@ -15,8 +15,8 @@ class Sports extends Component {
                     <Text style = {styles.para}>Contact : 0112653489</Text>
                 </View>
 
-                <View style={StyleSheet.card}>
-                    <Text style = {styles.title}>Badmintonl</Text>
+                <View style={styles.card}>
+                    <Text style = {styles.title}>Badminton</Text>
                     <Text style = {styles.para}>venue   : New gym</Text>
                     <Text style = {styles.para}>Time    : 6.00pm Every Tuesday</Text>
                     <Text style = {styles.para}>Couch   : A.B.C.D.Marisipala</Text>
@@ -24,7 +24,7 @@ class Sports extends Component {
                     <Text style = {styles.para}>Contact : 0112653489</Text>
                 </View>
 
-                <View style={StyleSheet.card}>
+                <View style={styles.card}>
                     <Text style = {styles.title}>Cricket</Text>
                     <Text style = {styles.para}>venue   : New gym</Text>
                     <Text style = {styles.para}>Time    : 6.00pm Every Wednesday</Text>
@@ -33,7 +33,7 @@ class Sports extends Component {
                     <Text style = {styles.para}>Contact : 0112653489</Text>
                 </View>
 
-                <View style={StyleSheet.card}>
+                <View style={styles.card}>
                     <Text style = {styles.title}>Karate</Text>
                     <Text style = {styles.para}>venue   : New gym</Text>
                     <Text style = {styles.para}>Time    : 6.00pm Every Thursday</Text>
@@ -42,7 +42,7 @@ class Sports extends Component {
                     <Text style = {styles.para}>Contact : 0112653489</Text>
                 </View>
 
-                <View style={StyleSheet.card}>
+                <View style={styles.card}>
                     <Text style = {styles.title}>Marate</Text>
                     <Text style = {styles.para}>venue   : New gym</Text>
                     <Text style = {styles.para}>Time    : 6.00pm Every Friday</Text>
@@ -51,7 +51,7 @@ class Sports extends Component {
                     <Text style = {styles.para}>Contact : 0112653489</Text>
                 </View>
 
-                <View style={StyleSheet.card}>
+                <View style={styles.card}>
                     <Text style = {styles.title}>Gujarate</Text>
                     <Text style = {styles.para}>venue   : New gym</Text>
                     <Text style = {styles.para}>Time    : 6.00pm Every Saturday</Text>
