@@ -42,6 +42,8 @@ class DrawerContent extends Component {
                     <DrawerButton icon={RANKINGS} text='Rankings' nav={() => { this.handleNav('rankings'); }} />
                     <View style={styles.ruler} />
                     <DrawerButton icon={ABOUT} text='About' nav={() => { this.handleNav('about'); }} />
+                    <DrawerButton icon={ABOUT} text='Sports' nav={() => {this.handleNav('sports'); }} />
+                    
                 </View>
                 <Text style={styles.footer}>© 2018 | www.moraspirit.com</Text>
             </ScrollView>

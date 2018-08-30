@@ -22,6 +22,7 @@
     "react-native-smart-splash-screen": "^2.3.5",
     "react-native-vector-icons": "^4.4.0",
     "react-redux": "^5.0.6",
+    "reactjs-popup": "^1.2.0",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-persist": "^4.10.0",
