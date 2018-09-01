@@ -227,7 +227,7 @@ class Sports extends Component {
                     <Text style = {styles.para}>venue   : New Gym</Text>
                     <Text style = {styles.para}>Time    : 6.00pm Every Monday</Text>
                     <Text style = {styles.para}>Captain  : D.A.S.R.Jayathunge </Text>
-                    <Text style = {styles.para}>vice-Captain : W.P.N.R.Withanat>
+                    <Text style = {styles.para}>vice-Captain : W.P.N.R.Withanat> </Text>
                     <Text style = {styles.para}>Contact : 0711599575</Text>
                 </View>
         
