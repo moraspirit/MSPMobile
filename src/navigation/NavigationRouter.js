@@ -11,6 +11,7 @@ import Rankings from '../containers/Rankings';
 import Notifications from '../containers/Notifications';
 import About from '../containers/About';
 import Modal from '../containers/Modal';
+import Sports from '../containers/Sports';
 import DrawerContent from './DrawerContent';
 
 const MENU = (<Icon name="ios-menu" size={35} color='grey' />);
@@ -55,6 +56,13 @@ const NavigationRouter = () => (
                                 icon={TabIcon}
                             />
                             <Scene
+                                key="sports"
+                                component={Sports}
+                                title='Mora Spirit Sports'
+                                navBarButtonColor='white'
+                                icon={TabIcon}
+                            />
+                            <Scene
                                 key="notifications"
                                 component={Notifications}
                                 title='MoraSpirit News'
@@ -64,6 +72,7 @@ const NavigationRouter = () => (
                         </Tabs>
                         <Scene back key="article" component={Article} navBarButtonColor='black' />
                         <Scene back key="about" component={About} navBarButtonColor='black' title='Mora Spirit' />
+                        <Scene back key="sports" component={Sports} navBarButtonColor='black' title='Mora Spirit Sports' />
                     </Scene>
                 </Drawer>
             </Scene>
