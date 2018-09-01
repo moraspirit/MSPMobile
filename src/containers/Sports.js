@@ -1,31 +1,55 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, StyleSheet, Button, Alert } from 'react-native';
+import { View, ScrollView, Text, StyleSheet, TouchableHighlight, Button, Alert } from 'react-native';
 import call from 'react-native-phone-call'
+import Modal from './Modal';
 
 class Sports extends Component {
+
+    state = {
+        modalVisible: false,
+    };
+
+    setModalVisible(visible){
+        this.setState({modalVisible: visible});
+    }
 
     render() {
         return (
             <ScrollView style={styles.container}>
-                <View style={styles.card}>                    
-                    <Text style = {styles.title}>Athletics (Male)</Text>
-                    <Text style = {styles.para}>venue   : Ground</Text>
-                    <Text style = {styles.para}>Time    : 6.00pm Every Monday</Text>
-                    <Text style = {styles.para}>Captain   : H.A.H.C.Hettiarachchi</Text>
-                    <Text style = {styles.para}>vice-Captain : G.P.M.Lakmal</Text>
-                    <Text style = {styles.para}>Contact : 0702701550</Text>
-                    <Button
+                <View style={{marginTop:22}}>
+                    <Modal
+                        animationType="slide"
+                        transparent={false}
+                        visible={this.state.modalVisible}
+                        onRequestClose={() => {
+                            Alert.alert('Modal has been closed');
+                        }}>
+                        <View style={styles.card}>                    
+                            <Text style = {styles.title}>Athletics (Male)</Text>
+                            <Text style = {styles.para}>venue   : Ground</Text>
+                            <Text style = {styles.para}>Time    : 6.00pm Every Monday</Text>
+                            <Text style = {styles.para}>Captain   : H.A.H.C.Hettiarachchi</Text>
+                            <Text style = {styles.para}>vice-Captain : G.P.M.Lakmal</Text>
+                            <Text style = {styles.para}>Contact : 0702701550</Text>
+                            <Button
+                                onPress={() => {
+                                    const args = {
+                                        number: '0372239161', // String value with the number to call
+                                        prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call 
+                                    }                            
+                                    call(args).catch(console.error)
+                                }}
+                                title="Press Me"
+                            /> 
+                        </View>
+                    </Modal>
+                    <Button 
                         onPress={() => {
-                            const args = {
-                                number: '0372239161', // String value with the number to call
-                                prompt: true // Optional boolean property. Determines if the user should be prompt prior to the call 
-                            }                            
-                            call(args).catch(console.error)
+                            this.setModalVisible(!this.state.modalVisible)
                         }}
-                        title="Press Me"
-                    />
-                    
+                        title="Modal"/>
                 </View>
+                
         
                 <View style={styles.card}>
                     <Text style = {styles.title}>Athletics (Female)</Text>
