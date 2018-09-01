@@ -3928,6 +3928,10 @@ react-native-onesignal@^3.0.5:
   dependencies:
     invariant "^2.2.2"
 
+react-native-phone-call@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/react-native-phone-call/-/react-native-phone-call-1.0.8.tgz#9c1e5d26957d9b573cf8cae212ef288d640eb3bc"
+
 react-native-reanimated@1.0.0-alpha.3:
   version "1.0.0-alpha.3"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.0.0-alpha.3.tgz#42983aa41911791cd3186fd3a18a788c3d4c3601"
