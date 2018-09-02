@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements'
-import { Icon } from 'react-native-elements'
+import { Button,Icon, Avatar } from 'react-native-elements'
 import call from 'react-native-phone-call';
 import Accordion from 'react-native-collapsible/Accordion';
 
@@ -33,10 +32,10 @@ class Sports extends Component {
     _renderTitle(sport){
         return (
             <View style={styles.title}>
-                <Icon
-                    type='material-community'
-                    name={sport.icon}
-                    size={35}
+                <Avatar
+                    size="small"
+                    rounded
+                    source={{uri: "https://www.sports.moraspirit.com/img/sports/athletic.png"}}  
                 />
                 <Text style = {styles.heading}>{sport.title}</Text>
             </View>
