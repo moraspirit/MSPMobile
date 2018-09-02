@@ -12,6 +12,9 @@ const TabIcon = (props) => {
     if (props.title === 'Rankings') {
         return <View><Icon name="ios-ribbon-outline" size={30} color={props.focused ? '#1893cc' : 'grey'} /></View>
     }
+    if (props.title === 'Mora Spirit Sports') {
+        return <View><Icon name="ios-football" size={30} color={props.focused ? '#1893cc' : 'grey'} /></View>
+    }
     return <View><Icon name="ios-notifications-outline" size={30} color={props.focused ? '#1893cc' : 'grey'} /></View>
 };
 

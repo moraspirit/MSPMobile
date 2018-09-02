@@ -9,7 +9,7 @@ const ARTICLES = (<Icon name="ios-paper" size={35} />);
 const GALLERY = (<Icon name="md-images" size={30} />);
 const RANKINGS = (<Icon name="md-ribbon" size={35} />);
 const ABOUT = (<Icon name="md-finger-print" size={35} />);
-
+const SPORTS = (<Icon name="ios-football" size={35} />);
 const HEADER_BACKGROUND = require('../images/materialBack.jpg');
 const TEXT_LOGO = require('../images/textLogo.png');
 const LOGO = require('../images/Logo.png');
@@ -29,9 +29,6 @@ class DrawerContent extends Component {
                     <Image source={HEADER_BACKGROUND} style={styles.header}>
                         <Image source={LOGO} resizeMode='contain' style={styles.Logo} />
                         <Image source={TEXT_LOGO} resizeMode='contain' style={styles.textLogo} />
-
-
-
                     </Image>
                 </View>
                 <View style={styles.body}>
@@ -41,9 +38,9 @@ class DrawerContent extends Component {
                     <Text style={styles.title}>Inter Uni Games 2018</Text>
                     <DrawerButton icon={RANKINGS} text='Rankings' nav={() => { this.handleNav('rankings'); }} />
                     <View style={styles.ruler} />
-                    <DrawerButton icon={ABOUT} text='About' nav={() => { this.handleNav('about'); }} />
-                    <DrawerButton icon={ABOUT} text='Sports' nav={() => {this.handleNav('sports'); }} />
                     
+                    <DrawerButton icon={SPORTS} text='Sports' nav={() => {this.handleNav('sports'); }} /> 
+                    <DrawerButton icon={ABOUT} text='About' nav={() => { this.handleNav('about'); }} />                   
                 </View>
                 <Text style={styles.footer}>© 2018 | www.moraspirit.com</Text>
             </ScrollView>
