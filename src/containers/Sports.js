@@ -15,7 +15,7 @@ class Sports extends Component {
             viceCaptian:'ViceCaptian1',
             contact:'0372239161',
             modalVisible:false,
-            icon:'run'
+            icon:'https://www.sports.moraspirit.com/img/sports/athletic.png'
         },
         {
             title:'Title2',
@@ -25,7 +25,7 @@ class Sports extends Component {
             viceCaptian:'ViceCaptian2',
             contact:'0766041559',
             modalVisible:false,
-            icon:'run'
+            icon:'https://www.sports.moraspirit.com/img/sports/athletic.png'
         }
     ]
 
@@ -35,7 +35,7 @@ class Sports extends Component {
                 <Avatar
                     size="small"
                     rounded
-                    source={{uri: "https://www.sports.moraspirit.com/img/sports/athletic.png"}}  
+                    source={{uri: sport.icon}}
                 />
                 <Text style = {styles.heading}>{sport.title}</Text>
             </View>
