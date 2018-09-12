@@ -20,9 +20,8 @@ const RankingsCard = (props) => {
     return (
         <View style={styles.container}>
             <Text style={styles.rank}>{props.uni.rank}</Text>
-            <Image style={styles.logo} source={eval(props.uni.name)} resizeMode='contain' />
+            <Image style={styles.logo} source={props.uni.image} resizeMode='contain' />
             <Text style={styles.name}>{props.uni.name}</Text>
-            <Text style={styles.points}>{props.uni.points}</Text>
         </View>
     );
 }

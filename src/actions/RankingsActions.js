@@ -8,12 +8,13 @@ import {
 export const fetchRankings = () => {
     return (dispatch) => {
         dispatch({ type: FETCHING_RANKS });
-        fetch('http://www.sports.moraspirit.com/getscores')
+        fetch('http://www.api.moraspirit.com/api/v1/points/2018')
             .then((response) => response.json())
             .then((responseJson) => {
+                // todo: check if this needs to  be changed to responseJson[1]
                 if (responseJson[0]) {
                     let orderedRankings = _.chain(responseJson[0])
-                        .sortBy(function (x) { return x.points })
+                        .sortBy(function (x) { return x.rank })
                         .reverse()
                         .value();
                     bindRank(orderedRankings);
