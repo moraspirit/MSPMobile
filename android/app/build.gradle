@@ -97,7 +97,7 @@ def enableProguardInReleaseBuilds = false
 **/
 
 ext.versionMajor = 1
-ext.versionMinor = 3
+ext.versionMinor = 6
 ext.versionPatch = 7
 ext.versionClassifier = null
 ext.isAlpha = false
