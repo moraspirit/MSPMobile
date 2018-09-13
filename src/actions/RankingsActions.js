@@ -12,10 +12,11 @@ export const fetchRankings = () => {
             .then((response) => response.json())
             .then((responseJson) => {
                 // todo: check if this needs to  be changed to responseJson[1]
-                if (responseJson[0]) {
-                    let orderedRankings = _.chain(responseJson[0])
+                console.log('--------')
+                console.log(responseJson.data)
+                if (responseJson.data) {
+                    let orderedRankings = _.chain(responseJson.data)
                         .sortBy(function (x) { return x.rank })
-                        .reverse()
                         .value();
                     bindRank(orderedRankings);
                     dispatch({ type: RANKINGS_FETCH_SUCCESS, payload: orderedRankings });

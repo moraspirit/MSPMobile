@@ -24,7 +24,7 @@ class Rankings extends Component {
                     ListHeaderComponent={ListHeader({ headerImage: HEADER, title:'Inter University Games 2018 Ranking', discription:'Overall ranking based on points earned so far...' })}
                     data={this.props.ranks}
                     renderItem={this.renderCard}
-                    keyExtractor={item => item.name}
+                    keyExtractor={item => item.key}
                     showsVerticalScrollIndicator={false}
                     refreshing={this.props.refreshing}
                     onRefresh={() => { this.props.fetchRankings() }}

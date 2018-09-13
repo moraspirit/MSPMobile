@@ -377,9 +377,7 @@ class Sports extends Component {
                 title={sport.title}
                 subtitle={'test'}
                 avatar={'https://www.sports.moraspirit.com/img/sports/wrestling.png'}
-                onPress={() => {
-                    Sports.makeCall('0372239161')
-                }}
+                hideChevron={true}
             />
         )
    }
@@ -403,9 +401,7 @@ class Sports extends Component {
                         title={item.title}
                         subtitle={item.captain}
                         avatar={{uri:item.icon}}
-                        onPress={() => {
-                            Sports.makeCall(item.contact)
-                }}
+                        hideChevron={true}
             />
                     }
                     keyExtractor={item => item.title}
